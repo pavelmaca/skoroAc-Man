@@ -141,7 +141,7 @@ public class PozorKolize implements KeyListener{
                 y = 24;
             }
         }
-        if(x > 35 && x < 121){
+        if(x > 49 && x < 121){
             if(y > 24 && y < 251){
                 y = 251;
             }
