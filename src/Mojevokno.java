@@ -27,9 +27,12 @@ public class Mojevokno extends JPanel {
     private boolean vyhrals = false;
     public int score = 0;
     private boolean hrajeSe = true;
+    private Potvurka potvurka;
+    private Mojevokno mojevokno;
     public Mojevokno(){
         this.poleCtvercu = new Prekazky[POCET_CTVERCU];
         this.PozorKolize = new PozorKolize(this);
+        this.potvurka = new Potvurka(this);
         //Random generator = new Random();
         this.setPreferredSize(new Dimension(300, 500));
         this.setBackground(Color.RED);
@@ -53,7 +56,7 @@ public class Mojevokno extends JPanel {
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        pocetZivotu(g);
+        //pocetZivotu(g);
         vypisScore(g);
             for (int i = 0; i < POCET_CTVERCU; i++) {
                 if (jidlo.get(i).isViditelny()) {
@@ -68,6 +71,10 @@ public class Mojevokno extends JPanel {
         }
         if(vyhrals == true){
             vypisVyhru(g);
+        }
+        potvurka.kresleniPotvurky1(g);
+        if(zivoty < 0){
+            vypsaniProhry(g);
         }
         /*
         vykresliBaf(g);
@@ -119,6 +126,9 @@ public class Mojevokno extends JPanel {
                         }
                         jidlo.get(i).skryt();
                     }
+            }
+            if(okrajePozorKolize.intersects(potvurka.getOkrajePP1())){
+                zivoty--;
             }
             //score = score + cas;
             repaint();
