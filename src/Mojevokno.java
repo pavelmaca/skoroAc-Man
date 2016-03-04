@@ -69,6 +69,9 @@ public class Mojevokno extends JPanel {
         if(vyhrals == true){
             vypisVyhru(g);
         }
+        /*
+        vykresliBaf(g);
+        */
     }
     public void vypisScore(Graphics g){
         g.setColor(Color.BLUE);
@@ -88,15 +91,19 @@ public class Mojevokno extends JPanel {
         g.setFont(Font.getFont(Font.MONOSPACED));
         g.drawString(zivoty+"UP", 15, 15);
     }
+    /*
+    public void vykresliBaf(Graphics g){
+        g.setColor(Color.YELLOW);
+        g.drawString("B   A   F",143, 251);
+    }
+    */
     private class PoslouchaniCasovace implements ActionListener{
         public int pomoc;
         @Override
         public void actionPerformed(ActionEvent e){
             Rectangle okrajePozorKolize = PozorKolize.getOkraje();
             pomoc++;
-            if(pomoc % 100 == 0 ){
-                cas = cas + 1;
-            }
+            cas = pomoc/100;
             PozorKolize.move();
             int i = 0;
             for(; i < POCET_CTVERCU;i++) {

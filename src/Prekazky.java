@@ -36,14 +36,10 @@ public class Prekazky {
         g.setColor(Color.YELLOW);
         g.drawRect(180, 370, 70, 60);
     }
-    public void vykresliSE(Graphics g){
-        g.setColor(Color.RED);
-        g.fillRect(x, y, DELKASTRANY, DELKASTRANY);
-        g.setColor(Color.darkGray);
-    }
     public Rectangle getOkraje(){
         return new Rectangle(x, y, DELKASTRANY, DELKASTRANY);
     }
+    /*
     public Rectangle getOkraje1(){return new Rectangle(50, 40, 70, 210);}
     public Rectangle getOkraje2(){
         return new Rectangle(150, 40, 100, 90);
@@ -60,6 +56,7 @@ public class Prekazky {
     public Rectangle getOkraje6(){
         return new Rectangle(180, 370, 70, 60);
     }
+    */
 
     public boolean isViditelny(){
         return viditelny;
