@@ -18,7 +18,7 @@ public class Mojevokno extends JPanel {
     private final int SIRKA_CTVERCE = 300;
     private final int VYSKA_CTVERCE = 500;
     public int  POCET_CTVERCU = 150;
-    private Vyhrals vyhra;
+    //private Vyhrals vyhra;
     private  Prekazky[] poleCtvercu;
     ArrayList<Prekazky> jidlo = new ArrayList<Prekazky>();
     public boolean viditelny = true;
@@ -27,6 +27,7 @@ public class Mojevokno extends JPanel {
     private boolean vyhrals = false;
     public int score = 0;
     private boolean hrajeSe = true;
+    private Vyhrals vyhra;
     private Potvurka potvurka;
     private Mojevokno mojevokno;
     public Mojevokno(){
@@ -70,10 +71,11 @@ public class Mojevokno extends JPanel {
             vypsaniProhry(g);
         }
         if(vyhrals == true){
+            setBackground(Color.BLUE);
             vypisVyhru(g);
         }
         potvurka.kresleniPotvurky1(g);
-        if(zivoty < 0){
+        if(zivoty <= 0){
             vypsaniProhry(g);
         }
         /*
@@ -86,7 +88,7 @@ public class Mojevokno extends JPanel {
         g.drawString(String.valueOf(score), 270 , 15);
     }
     public void vypisVyhru(Graphics g){
-        g.setColor(Color.BLUE);
+        g.setColor(Color.ORANGE);
         g.drawString("V Y H R Á L / A  J S I .", 90, 270);
     }
     public void vypsaniProhry(Graphics g){
@@ -127,9 +129,10 @@ public class Mojevokno extends JPanel {
                         jidlo.get(i).skryt();
                     }
             }
-            if(okrajePozorKolize.intersects(potvurka.getOkrajePP1())){
-                zivoty--;
-            }
+            //if(okrajePozorKolize.intersects(potvurka.getOkrajePP1())){
+                //zivoty--;
+            //}
+            potvurka.polohaPotvurky1();
             //score = score + cas;
             repaint();
         }

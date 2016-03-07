@@ -4,10 +4,12 @@ import java.awt.*;
 /**
  * Created by Admin on 18.2.2016.
  */
-public class Vyhrals {
+public class Vyhrals extends JPanel {
     private JLabel vyhra;
     public Vyhrals(){
-
+        this.setFocusable(true);
+        this.setBackground(Color.blue);
+        this.setPreferredSize(new Dimension(300, 500));
     }
     public void vykresleniVyhry(Graphics g){
         g.setColor(Color.white);
