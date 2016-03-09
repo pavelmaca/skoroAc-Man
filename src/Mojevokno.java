@@ -129,10 +129,37 @@ public class Mojevokno extends JPanel {
                         jidlo.get(i).skryt();
                     }
             }
-            //if(okrajePozorKolize.intersects(potvurka.getOkrajePP1())){
-                //zivoty--;
-            //}
-            potvurka.polohaPotvurky1();
+            /*
+            Rectangle OP1 = prekazky.getOkraje1();
+            if(potvurka.getOkrajePP1().intersects(OP1)){
+                potvurka.generovani();
+            }
+            Rectangle OP2 = prekazky.getOkraje1();
+            if(potvurka.getOkrajePP1().intersects(OP2)){
+                potvurka.generovani();
+            }
+            Rectangle OP3 = prekazky.getOkraje1();
+            if(potvurka.getOkrajePP1().intersects(OP3)){
+                potvurka.generovani();
+            }
+            Rectangle OP4 = prekazky.getOkraje1();
+            if(potvurka.getOkrajePP1().intersects(OP4)){
+                potvurka.generovani();
+            }
+            Rectangle OP5 = prekazky.getOkraje1();
+            if(potvurka.getOkrajePP1().intersects(OP1)){
+                potvurka.generovani();
+            }
+            Rectangle OP6 = prekazky.getOkraje1();
+            if(potvurka.getOkrajePP1().intersects(OP6)){
+                potvurka.generovani();
+            }
+            */
+            if(okrajePozorKolize.intersects(potvurka.getOkrajePP1())){
+                zivoty--;
+            }
+
+            potvurka.polohaPotvurky();
             //score = score + cas;
             repaint();
         }
