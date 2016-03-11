@@ -1,6 +1,7 @@
 /**
  * Created by Admin on 8.3.2016.
  */
+import java.util.*;
 public class ProhledavaniGrafu {
     public static void main(String[] args) {
         prohledavani();
@@ -26,7 +27,7 @@ public class ProhledavaniGrafu {
                 }
             }
         }
-        System.out.println(p.toString());
+        System.out.println(Arrays.toString(p));
         return p;
     }
 }

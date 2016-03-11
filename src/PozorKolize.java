@@ -5,7 +5,7 @@ public class PozorKolize implements KeyListener{
     private Color barva = Color.WHITE;
     private final int vyskaKruhu = 15;
     private final int sirkaKruhu = 15;
-    private int x, y, smerX, smerY, zivoty, rychlost;
+    public int x, y, smerX, smerY, zivoty, rychlost;
     private Mojevokno vokno;
     public PozorKolize(Mojevokno vokno){
         rychlost = 1;
