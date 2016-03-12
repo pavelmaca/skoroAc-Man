@@ -69,25 +69,24 @@ public class Mojevokno extends JPanel {
                     g.setColor(Color.RED);
                 }
             }
-            PozorKolize.vykresliSe(g);
-        if(hrajeSe == false){
-            vypsaniProhry(g);
-        }
         if(vyhrals == true){
             setBackground(Color.BLUE);
             vypisVyhru(g);
+            return;
         }
-        potvurka.kresleniPotvurky1(g);
-        potvurka2.kresleniPotvurky2(g);
         if(zivoty <= 0){
             vypsaniProhry(g);
+            return;
         }
+        PozorKolize.vykresliSe(g);
+        potvurka.kresleniPotvurky1(g);
+        potvurka2.kresleniPotvurky2(g);
         /*
         vykresliBaf(g);
         */
     }
     public void vypisScore(Graphics g){
-        g.setColor(Color.BLUE);
+        g.setColor(Color.YELLOW);
         g.getFontMetrics();
         g.drawString(String.valueOf(score), 270 , 15);
     }
@@ -100,7 +99,7 @@ public class Mojevokno extends JPanel {
         g.drawString("P A R D O N ,  A L E  G A M E  O V E R .", 70, 270);
     }
     public void pocetZivotu(Graphics g){
-        g.setColor(Color.BLUE);
+        g.setColor(Color.YELLOW);
         g.setFont(Font.getFont(Font.MONOSPACED));
         g.drawString(zivoty+"UP", 15, 15);
     }
@@ -119,7 +118,6 @@ public class Mojevokno extends JPanel {
             //Rectangle OkrajePN = pre.getOkraje1();
             pomoc++;
             cas = pomoc/100;
-            PozorKolize.move();
             int i = 0;
             for(; i < POCET_CTVERCU;i++) {
                     Prekazky prek = jidlo.get(i);
@@ -128,12 +126,6 @@ public class Mojevokno extends JPanel {
                         if(jidlo.get(i).isViditelny() == true){
                             jidlo.get(i).skryt();
                             score++;
-                            /**
-                            PocetKontrolichCtvercu++;
-                            if(PocetKontrolichCtvercu == 75){
-                                vyhrals = true;
-                            }
-                             */
                         }
                     }
                 //if(okrajePrekazky.intersects(OkrajePN)){
@@ -196,6 +188,7 @@ public class Mojevokno extends JPanel {
                 PozorKolize.x = 130;
                 PozorKolize.y = 230;
             }
+            PozorKolize.move();
             potvurka.polohaPotvurky();
             potvurka2.polohaPotvurky();
             //score = score + cas;

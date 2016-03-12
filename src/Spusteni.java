@@ -9,6 +9,7 @@ public class Spusteni extends JFrame {
         add(vokno);
         setResizable(false);
         pack();
+        return;
     }
     public static void main(String[] args) {
         new Spusteni().setVisible(true);
