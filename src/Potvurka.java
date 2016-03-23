@@ -4,8 +4,6 @@ public class Potvurka {
     private Mojevokno vokno;
     private Prekazky smerr;
     public Potvurka(Mojevokno mojevokno) {
-        this.vokno = vokno;
-        this.smerr = smerr;
         Bod1();
     }
     public void Bod1() {
@@ -21,7 +19,7 @@ public class Potvurka {
         if(pp1 < 45){
             rychlost = 2;
         }
-        if(pp1 > 275){
+        if(pp1 > 235){
             rychlost = - 2;
         }
     }

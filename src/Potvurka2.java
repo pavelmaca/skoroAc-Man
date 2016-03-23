@@ -1,11 +1,7 @@
 import java.awt.*;
 public class Potvurka2 {
     private int pp1, pp2, smerX, smerY, rychlost, cislo;
-    private Mojevokno vokno;
-    private Prekazky smerr;
     public Potvurka2(Mojevokno mojevokno) {
-        this.vokno = vokno;
-        this.smerr = smerr;
         Bod1();
     }
     public void Bod1() {
