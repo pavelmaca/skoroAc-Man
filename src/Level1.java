@@ -4,16 +4,15 @@ import java.awt.*;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
-import javax.management.Query;
 import javax.swing.*;
 import javax.swing.Timer;
 import java.util.*;
 
-public class Mojevokno extends JPanel {
+public class Level1 extends JPanel {
     private int zivoty;
     private PozorKolize PozorKolize;
     public int  POCET_CTVERCU = 150;
+    public int POCET_KONTROLNICH_CTVERCU;
     private  Prekazky[] poleCtvercu;
     ArrayList<Prekazky> jidlo = new ArrayList<Prekazky>();
     public boolean viditelny = true;
@@ -24,7 +23,11 @@ public class Mojevokno extends JPanel {
     private OkrajeP1 okrajeP1;
     private Potvurka2 potvurka2;
     private Potvurka3 potvurka3;
-    public Mojevokno(){
+    private SuperJidlo superjidlo;
+    public Level1(){
+        pusteniLevel1();
+    }
+    public void pusteniLevel1(){
         this.poleCtvercu = new Prekazky[POCET_CTVERCU];
         this.PozorKolize = new PozorKolize(this);
         this.potvurka = new Potvurka(this);
@@ -55,12 +58,10 @@ public class Mojevokno extends JPanel {
         casovac.start();
         this.addKeyListener(PozorKolize);
     }
-    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         pocetZivotu(g);
         vypisScore(g);
-        noo(g);
             for (int i = 0; i < POCET_CTVERCU; i++) {
                 if (jidlo.get(i).isViditelny()) {
                     jidlo.get(i).vykresliSe(g);
@@ -77,13 +78,15 @@ public class Mojevokno extends JPanel {
             vypsaniProhry(g);
             return;
         }
+        if(viditelny == true) {
+            vykresleniSuperJidla(g);
+        }
         PozorKolize.vykresliSe(g);
         potvurka.kresleniPotvurky1(g);
         potvurka2.kresleniPotvurky2(g);
-        potvurka3.vykresleniPotvurky3(g);
-    }
-    public void noo(Graphics g){
-        g.draw3DRect(57, 95, 15, 15,true);
+        if(score < 100) {
+            potvurka3.vykresleniPotvurky3(g);
+        }
     }
     public void vypisScore(Graphics g){
         g.setColor(Color.YELLOW);
@@ -101,7 +104,11 @@ public class Mojevokno extends JPanel {
     public void pocetZivotu(Graphics g){
         g.setColor(Color.YELLOW);
         g.setFont(Font.getFont(Font.MONOSPACED));
-        g.drawString(zivoty+"UP", (getSIRKA_PANELU()/2)-15,15);
+        g.drawString("Z I V O T Y :     "+zivoty, (getSIRKA_PANELU()/2)-45,15);
+    }
+    public void vykresleniSuperJidla(Graphics g){
+        g.setColor(Color.BLUE);
+        g.fillRect(133, 200, 10, 10);
     }
     private class PoslouchaniCasovace implements ActionListener{
         public int pomoc;
@@ -112,11 +119,14 @@ public class Mojevokno extends JPanel {
             }
             Rectangle okrajePozorKolize = PozorKolize.getOkraje();
             //Rectangle OkrajePN = pre.getOkraje1();
-            pomoc++;
-            cas = pomoc/100;
-            if(pomoc % 100 == 0){
-
+            Rectangle superJidlo = getOkraje();
+            if (okrajePozorKolize.intersects(superJidlo)){
+                if(isViditelny() == true) {
+                    score = score * 2;
+                    skryt();
+                }
             }
+            cas = pomoc/100;
             int i = 0;
             for(; i < POCET_CTVERCU;i++) {
                     Prekazky prek = jidlo.get(i);
@@ -125,11 +135,13 @@ public class Mojevokno extends JPanel {
                         if(jidlo.get(i).isViditelny() == true){
                             jidlo.get(i).skryt();
                             score++;
+                            POCET_KONTROLNICH_CTVERCU++;
                         }
                     }
             }
-            if(score == 75){
+            if(POCET_KONTROLNICH_CTVERCU == 75){
                 vyhrals = true;
+                score = score + zivoty * 30;
             }
             /*
             Rectangle OP1 = prekazky.getOkraje1();
@@ -171,17 +183,19 @@ public class Mojevokno extends JPanel {
                 PozorKolize.smerX = 0;
                 PozorKolize.smerY = 0;
             }
-            if(okrajePozorKolize.intersects(potvurka3.getOkrajePP3())){
-                zivoty--;
-                PozorKolize.x = 130;
-                PozorKolize.y = 230;
-                PozorKolize.smerX = 0;
-                PozorKolize.smerY = 0;
+            if(score < 100) {
+                if (okrajePozorKolize.intersects(potvurka3.getOkrajePP3())) {
+                    zivoty--;
+                    PozorKolize.x = 130;
+                    PozorKolize.y = 230;
+                    PozorKolize.smerX = 0;
+                    PozorKolize.smerY = 0;
+                }
+                potvurka3.pohyb();
             }
             PozorKolize.move();
             potvurka.polohaPotvurky();
             potvurka2.polohaPotvurky();
-            potvurka3.pohyb();
             repaint();
         }
     }
@@ -194,6 +208,12 @@ public class Mojevokno extends JPanel {
     public int getVYSKA_PANELU(){
 
         return this.getHeight();
+    }
+    public void skryt() {
+        viditelny = false;
+    }
+    private Rectangle getOkraje(){
+        return new Rectangle(130, 200, 10, 10);
     }
 
 }

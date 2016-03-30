@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -6,8 +7,8 @@ public class PozorKolize implements KeyListener{
     private final int vyskaKruhu = 15;
     private final int sirkaKruhu = 15;
     public int x, y, smerX, smerY, zivoty, rychlost;
-    private Mojevokno vokno;
-    public PozorKolize(Mojevokno vokno){
+    private Level1 vokno;
+    public PozorKolize(Level1 vokno){
         rychlost = 1;
         this.vokno = vokno;
         x = 130;

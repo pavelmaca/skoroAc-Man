@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_hra" default="compile.module.hra">
+  <dirname property="module.hra.basedir" file="${ant.file.module_hra}"/>
+  
+  <property name="module.jdk.home.hra" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.hra" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.hra" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.hra" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="hra.output.dir" value="${module.hra.basedir}/out/production/Hra"/>
+  <property name="hra.testoutput.dir" value="${module.hra.basedir}/out/test/Hra"/>
+  
+  <path id="hra.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="hra.module.production.classpath">
+    <path refid="${module.jdk.classpath.hra}"/>
+  </path>
+  
+  <path id="hra.runtime.production.module.classpath">
+    <pathelement location="${hra.output.dir}"/>
+  </path>
+  
+  <path id="hra.module.classpath">
+    <path refid="${module.jdk.classpath.hra}"/>
+    <pathelement location="${hra.output.dir}"/>
+  </path>
+  
+  <path id="hra.runtime.module.classpath">
+    <pathelement location="${hra.testoutput.dir}"/>
+    <pathelement location="${hra.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.hra">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.hra">
+    <patternset refid="excluded.from.module.hra"/>
+  </patternset>
+  
+  <path id="hra.module.sourcepath">
+    <dirset dir="${module.hra.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.hra" depends="compile.module.hra.production,compile.module.hra.tests" description="Compile module Hra"/>
+  
+  <target name="compile.module.hra.production" depends="register.custom.compilers" description="Compile module Hra; production classes">
+    <mkdir dir="${hra.output.dir}"/>
+    <javac2 destdir="${hra.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.hra}/javac">
+      <compilerarg line="${compiler.args.hra}"/>
+      <bootclasspath refid="hra.module.bootclasspath"/>
+      <classpath refid="hra.module.production.classpath"/>
+      <src refid="hra.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.hra"/>
+    </javac2>
+    
+    <copy todir="${hra.output.dir}">
+      <fileset dir="${module.hra.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.hra.tests" depends="register.custom.compilers,compile.module.hra.production" description="compile module Hra; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.hra" description="cleanup module">
+    <delete dir="${hra.output.dir}"/>
+    <delete dir="${hra.testoutput.dir}"/>
+  </target>
+</project>

@@ -4,9 +4,9 @@ import java.awt.*;
  * Created by Admin on 28.2.2016.
  */
 public class OkrajeP1 {
-    private Mojevokno vokno;
+    private Level1 vokno;
 
-    public OkrajeP1(Mojevokno mojevokno) {
+    public OkrajeP1(Level1 level1) {
 
     }
 

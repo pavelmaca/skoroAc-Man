@@ -3,7 +3,6 @@ public class Prekazky {
     private final int DELKASTRANY = 5;
     private int x, y;
     private boolean viditelny = true;
-    private Mojevokno vokno;
     public Prekazky(int x, int y){
         this.x = x;
         this.y = y;
