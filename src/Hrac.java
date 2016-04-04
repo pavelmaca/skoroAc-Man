@@ -1,23 +1,21 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-public class PozorKolize implements KeyListener{
+public class Hrac implements KeyListener{
     private Color barva = Color.WHITE;
     private final int vyskaKruhu = 15;
     private final int sirkaKruhu = 15;
     public int x, y, smerX, smerY, zivoty, rychlost;
-    private Level1 vokno;
-    public PozorKolize(Level1 vokno){
-        rychlost = 1;
+    private oknoHry vokno;
+    public Hrac(oknoHry vokno){
+        //this.vokno = new oknoHry();
         this.vokno = vokno;
+        rychlost = 1;
         x = 130;
         y = 230;
         zivoty = 3;
     }
     public void vykresliSe(Graphics g){
-        //g.setColor(Color.RED);
-        //g.drawRect(x, y, sirkaKruhu, vyskaKruhu);
         g.setColor(barva);
         g.fillOval(x, y, sirkaKruhu, vyskaKruhu);
         g.setColor(Color.black);
@@ -30,6 +28,14 @@ public class PozorKolize implements KeyListener{
         if ((x >= vokno.getSIRKA_PANELU() - (sirkaKruhu + 1)) && (vokno.getSIRKA_PANELU() > 0)){
             x = vokno.getSIRKA_PANELU() - (sirkaKruhu + 1);
         }
+        if ((y >= vokno.getVYSKA_PANELU() - (vyskaKruhu + 1)) && (vokno.getVYSKA_PANELU() > 0)) {
+            y = vokno.getVYSKA_PANELU() - (vyskaKruhu + 1);
+        }
+        if(vokno.uroven == 1){
+            prekezkyLevelu1();
+        }
+    }
+    public void prekezkyLevelu1(){
         //1. prakazka zleva
         if(25 < y && y < 250){
             if(36 > x && x > 34){
@@ -105,9 +111,6 @@ public class PozorKolize implements KeyListener{
         //v okne zleva
         if (x <= 0) {
             x = 0;
-        }
-        if ((y >= vokno.getVYSKA_PANELU() - (vyskaKruhu + 1)) && (vokno.getVYSKA_PANELU() > 0)) {
-            y = vokno.getVYSKA_PANELU() - (vyskaKruhu + 1);
         }
         //1. no nahore
         if(x > 35 && x < 121){

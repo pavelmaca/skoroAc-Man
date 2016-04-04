@@ -3,7 +3,7 @@ import java.awt.*;
 public class Spusteni extends JFrame {
     public int poustec;
     public Nabidka nabidka;
-    public Level1 hra = new Level1();
+    public oknoHry hra = new oknoHry(this);
     public Spusteni(){
         setTitle("Žravá_koule");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,7 +1,7 @@
 import java.awt.*;
 public class Potvurka2 {
     private int pp1, pp2, smerX, smerY, rychlost, cislo;
-    public Potvurka2(Level1 level1) {
+    public Potvurka2(oknoHry oknoHry) {
         Bod1();
     }
     public void Bod1() {

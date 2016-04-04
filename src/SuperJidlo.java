@@ -7,17 +7,13 @@ public class SuperJidlo {
     private int souradniceX, souradniceY, cislo;
     private final int velikost = 10;
     private boolean viditelny = true;
-    private Level1 vokno;
-    public SuperJidlo(){
-        umisteni();
-    }
-    public void umisteni(){
-        souradniceX = 50;
-        souradniceY = 20;
+    private oknoHry vokno;
+    public SuperJidlo(oknoHry oknoHry){
+
     }
     public void vykresleniSuperJidla(Graphics g){
         g.setColor(Color.BLUE);
-        g.fillRect(souradniceX, souradniceY, velikost, velikost);
+        g.fillRect(133, 200, 10, 10);
     }
     public boolean isViditelny(){
         return viditelny;

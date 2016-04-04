@@ -1,4 +1,4 @@
-import com.sun.prism.*;
+import urovne.Uroven1;
 
 import java.awt.*;
 import java.awt.Graphics;
@@ -8,13 +8,13 @@ import javax.swing.*;
 import javax.swing.Timer;
 import java.util.*;
 
-public class Level1 extends JPanel {
+public class oknoHry extends JPanel {
     private int zivoty;
-    private PozorKolize PozorKolize;
+    private Hrac Hrac;
     public int  POCET_CTVERCU = 150;
     public int POCET_KONTROLNICH_CTVERCU;
-    private  Prekazky[] poleCtvercu;
-    ArrayList<Prekazky> jidlo = new ArrayList<Prekazky>();
+    private  Svaca[] poleCtvercu;
+    ArrayList<Svaca> jidlo = new ArrayList<Svaca>();
     public boolean viditelny = true;
     public int cas;
     private boolean vyhrals = false;
@@ -23,22 +23,20 @@ public class Level1 extends JPanel {
     private OkrajeP1 okrajeP1;
     private Potvurka2 potvurka2;
     private Potvurka3 potvurka3;
+    private Uroven1 uroven1;
     private SuperJidlo superjidlo;
-    public Level1(){
+    public int uroven = 1;
+    public oknoHry(Spusteni hrac){
         pusteniLevel1();
     }
     public void pusteniLevel1(){
-        this.poleCtvercu = new Prekazky[POCET_CTVERCU];
-        this.PozorKolize = new PozorKolize(this);
+        this.poleCtvercu = new Svaca[POCET_CTVERCU];
+        this.Hrac = new Hrac(this);
         this.potvurka = new Potvurka(this);
         this.potvurka2 = new Potvurka2(this);
-        this.okrajeP1 = new OkrajeP1(this);
-        this.okrajeP1 = new OkrajeP1(this);
-        this.okrajeP1 = new OkrajeP1(this);
-        this.okrajeP1 = new OkrajeP1(this);
-        this.okrajeP1 = new OkrajeP1(this);
-        this.okrajeP1 = new OkrajeP1(this);
+        this.uroven1 = new Uroven1();
         this.potvurka3 = new Potvurka3(this);
+        this.superjidlo = new SuperJidlo(this);
         this.setPreferredSize(new Dimension(300, 500));
         this.setBackground(Color.RED);
         this.setFocusable(true);
@@ -48,7 +46,7 @@ public class Level1 extends JPanel {
             int x = 10;
             for(int k = 0;k < 10;k++) {
                 x = x + 25;
-                Prekazky p = new Prekazky(x, y);
+                Svaca p = new Svaca(x, y);
                 jidlo.add(p);
             }
             y = y + 30;
@@ -56,19 +54,12 @@ public class Level1 extends JPanel {
         PoslouchaniCasovace publikum = new PoslouchaniCasovace();
         Timer casovac = new Timer(10, publikum);
         casovac.start();
-        this.addKeyListener(PozorKolize);
+        this.addKeyListener(Hrac);
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         pocetZivotu(g);
         vypisScore(g);
-            for (int i = 0; i < POCET_CTVERCU; i++) {
-                if (jidlo.get(i).isViditelny()) {
-                    jidlo.get(i).vykresliSe(g);
-                } else {
-                    g.setColor(Color.RED);
-                }
-            }
         if(vyhrals == true){
             this.setBackground(Color.BLUE);
             vypisVyhru(g);
@@ -78,14 +69,24 @@ public class Level1 extends JPanel {
             vypsaniProhry(g);
             return;
         }
-        if(viditelny == true) {
-            vykresleniSuperJidla(g);
+        for (int i = 0; i < POCET_CTVERCU; i++) {
+            if (jidlo.get(i).isViditelny()) {
+                jidlo.get(i).vykresliSeSvaca(g);
+            } else {
+                g.setColor(Color.RED);
+            }
         }
-        PozorKolize.vykresliSe(g);
-        potvurka.kresleniPotvurky1(g);
-        potvurka2.kresleniPotvurky2(g);
-        if(score < 100) {
-            potvurka3.vykresleniPotvurky3(g);
+        Hrac.vykresliSe(g);
+        if(uroven == 1) {
+            uroven1.vykresliPrekazky(g);
+            if(viditelny == true) {
+                superjidlo.vykresleniSuperJidla(g);
+            }
+            potvurka.kresleniPotvurky1(g);
+            potvurka2.kresleniPotvurky2(g);
+            if (score < 100) {
+                potvurka3.vykresleniPotvurky3(g);
+            }
         }
     }
     public void vypisScore(Graphics g){
@@ -106,10 +107,6 @@ public class Level1 extends JPanel {
         g.setFont(Font.getFont(Font.MONOSPACED));
         g.drawString("Z I V O T Y :     "+zivoty, (getSIRKA_PANELU()/2)-45,15);
     }
-    public void vykresleniSuperJidla(Graphics g){
-        g.setColor(Color.BLUE);
-        g.fillRect(133, 200, 10, 10);
-    }
     private class PoslouchaniCasovace implements ActionListener{
         public int pomoc;
         @Override
@@ -117,7 +114,7 @@ public class Level1 extends JPanel {
             if(vyhrals == true){
                 return;
             }
-            Rectangle okrajePozorKolize = PozorKolize.getOkraje();
+            Rectangle okrajePozorKolize = Hrac.getOkraje();
             //Rectangle OkrajePN = pre.getOkraje1();
             Rectangle superJidlo = getOkraje();
             if (okrajePozorKolize.intersects(superJidlo)){
@@ -129,7 +126,16 @@ public class Level1 extends JPanel {
             cas = pomoc/100;
             int i = 0;
             for(; i < POCET_CTVERCU;i++) {
-                    Prekazky prek = jidlo.get(i);
+                Rectangle okrajeJidla = jidlo.get(i).getOkraje();
+                if(uroven == 1) {
+                    for (int j = 0; j < uroven1.pocetPrekazek(); j++) {
+                        Rectangle prekazka = uroven1.getOkraje(j);
+                        if (prekazka.intersects(okrajeJidla)) {
+                            jidlo.get(i).skryt();
+                        }
+                    }
+                }
+                    Svaca prek = jidlo.get(i);
                     Rectangle okrajePrekazky = jidlo.get(i).getOkraje();
                     if (okrajePozorKolize.intersects(okrajePrekazky)) {
                         if(jidlo.get(i).isViditelny() == true){
@@ -169,33 +175,35 @@ public class Level1 extends JPanel {
                 potvurka.generovani();
             }
             */
-            if(okrajePozorKolize.intersects(potvurka.getOkrajePP1())){
-                zivoty--;
-                PozorKolize.x = 130;
-                PozorKolize.y = 230;
-                PozorKolize.smerX = 0;
-                PozorKolize.smerY = 0;
-            }
-            if(okrajePozorKolize.intersects(potvurka2.getOkrajePP2())){
-                zivoty--;
-                PozorKolize.x = 130;
-                PozorKolize.y = 230;
-                PozorKolize.smerX = 0;
-                PozorKolize.smerY = 0;
-            }
-            if(score < 100) {
-                if (okrajePozorKolize.intersects(potvurka3.getOkrajePP3())) {
+            if(uroven == 1) {
+                if (okrajePozorKolize.intersects(potvurka.getOkrajePP1())) {
                     zivoty--;
-                    PozorKolize.x = 130;
-                    PozorKolize.y = 230;
-                    PozorKolize.smerX = 0;
-                    PozorKolize.smerY = 0;
+                    Hrac.x = 130;
+                    Hrac.y = 230;
+                    Hrac.smerX = 0;
+                    Hrac.smerY = 0;
                 }
-                potvurka3.pohyb();
+                if (okrajePozorKolize.intersects(potvurka2.getOkrajePP2())) {
+                    zivoty--;
+                    Hrac.x = 130;
+                    Hrac.y = 230;
+                    Hrac.smerX = 0;
+                    Hrac.smerY = 0;
+                }
+                if (score < 100) {
+                    if (okrajePozorKolize.intersects(potvurka3.getOkrajePP3())) {
+                        zivoty--;
+                        Hrac.x = 130;
+                        Hrac.y = 230;
+                        Hrac.smerX = 0;
+                        Hrac.smerY = 0;
+                    }
+                    potvurka3.pohyb();
+                }
+                potvurka.polohaPotvurky();
+                potvurka2.polohaPotvurky();
             }
-            PozorKolize.move();
-            potvurka.polohaPotvurky();
-            potvurka2.polohaPotvurky();
+            Hrac.move();
             repaint();
         }
     }
@@ -209,6 +217,7 @@ public class Level1 extends JPanel {
 
         return this.getHeight();
     }
+    public int getUroven(){return this.uroven;}
     public void skryt() {
         viditelny = false;
     }

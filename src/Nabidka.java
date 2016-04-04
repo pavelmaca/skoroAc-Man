@@ -11,8 +11,16 @@ public class Nabidka extends JPanel implements ActionListener{
     private Object g;
     public Nabidka(Spusteni program){
         Button start = new Button("Spustit");
+        Button nejlepsich10 = new Button("Nejlepších 10");
+        Button pribeh = new Button("Příběh");
+        Button  navod = new Button("Návod");
+        Button tvurce = new Button("Tvůrce");
         Button vypnout = new Button("Vypnout");
         add(start);
+        add(nejlepsich10);
+        add(pribeh);
+        add(navod);
+        add(tvurce);
         add(vypnout);
         start.addActionListener(this);
         vypnout.addActionListener(this);
@@ -25,6 +33,15 @@ public class Nabidka extends JPanel implements ActionListener{
         String pri = ae.getActionCommand();
         if (pri.equals("Spustit")) {
             program.otevriLevel1();
+        }
+        if (pri.equals("Příběh")) {
+
+        }
+        if (pri.equals("Návod")) {
+
+        }
+        if (pri.equals("rvůrce")) {
+
         }
         if(pri.equals("Vypnout")){
             program.dispose();

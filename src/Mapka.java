@@ -7,13 +7,13 @@ import java.awt.*;
 public class Mapka extends JPanel {
     private int sloupce = 30, radky = 50, velikostCtverce = 10, y = 0;
     private boolean nam;
-    private Prekazky[][] prekazky = new Prekazky[radky][sloupce];
+    private Svaca[][] svaca = new Svaca[radky][sloupce];
     public Mapka(){
         setPreferredSize(new Dimension(sloupce * velikostCtverce, 50 * velikostCtverce));
         setBackground(Color.RED);
         for(int radek = 0; radek < radky; radek++){
             for(int sloupec = 0; sloupec < sloupce;sloupec++){
-                prekazky[radek][sloupec] = new Prekazky((radek-1) * velikostCtverce, (sloupec - 1) * velikostCtverce);
+                svaca[radek][sloupec] = new Svaca((radek-1) * velikostCtverce, (sloupec - 1) * velikostCtverce);
             }
         }
     }

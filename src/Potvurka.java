@@ -1,9 +1,9 @@
 import java.awt.*;
 public class Potvurka {
     private int pp1, pp2, smerX, smerY, rychlost, cislo;
-    private Level1 vokno;
-    private Prekazky smerr;
-    public Potvurka(Level1 level1) {
+    private oknoHry vokno;
+    private Svaca smerr;
+    public Potvurka(oknoHry oknoHry) {
         Bod1();
     }
     public void Bod1() {

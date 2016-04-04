@@ -8,7 +8,7 @@ public class Potvurka3 {
     private int y;
     private int rychlost;
     private int smerY;
-    public Potvurka3(Level1 level1){
+    public Potvurka3(oknoHry oknoHry){
         vychoziPoloha();
     }
     public void vychoziPoloha(){
