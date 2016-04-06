@@ -1,3 +1,5 @@
+package jidlo;
+
 import java.awt.*;
 public class Svaca {
     private final int DELKASTRANY = 5;
