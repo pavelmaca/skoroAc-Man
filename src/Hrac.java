@@ -1,3 +1,8 @@
+import jidlo.Svaca;
+import postavicky.Smery;
+import urovne.Uroven;
+import urovne.Uroven1;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -7,6 +12,8 @@ public class Hrac implements KeyListener{
     private final int sirkaKruhu = 15;
     public int x, y, smerX, smerY, zivoty, rychlost;
     private oknoHry vokno;
+    private Uroven aktualniUroven;
+    private boolean poh = true;
     public Hrac(oknoHry vokno){
         //this.vokno = new oknoHry();
         this.vokno = vokno;
@@ -21,205 +28,62 @@ public class Hrac implements KeyListener{
         g.setColor(Color.black);
         g.drawOval(x, y, sirkaKruhu, vyskaKruhu);
     }
-    public void move(){
-        x += smerX;
-        y += smerY;
-        //v okne zprava
-        if ((x >= vokno.getSIRKA_PANELU() - (sirkaKruhu + 1)) && (vokno.getSIRKA_PANELU() > 0)){
-            x = vokno.getSIRKA_PANELU() - (sirkaKruhu + 1);
-        }
-        if ((y >= vokno.getVYSKA_PANELU() - (vyskaKruhu + 1)) && (vokno.getVYSKA_PANELU() > 0)) {
-            y = vokno.getVYSKA_PANELU() - (vyskaKruhu + 1);
-        }
-        if(vokno.uroven == 1){
-            prekezkyLevelu1();
+    public void move() {
+        if(!kontrolaKolize(x+smerX, y+smerY)){
+            x += smerX;
+            y += smerY;
         }
     }
-    public void prekezkyLevelu1(){
-        //1. prakazka zleva
-        if(25 < y && y < 250){
-            if(36 > x && x > 34){
-                x = 34;
+    public boolean kontrolaKolize(int x, int y) {
+        //v okne zprava
+        if ((x >= vokno.getSIRKA_PANELU() - (sirkaKruhu + 1)) && (vokno.getSIRKA_PANELU() > 0)) {
+            return true;
+        }
+        if ((y >= vokno.getVYSKA_PANELU() - (vyskaKruhu + 1)) && (vokno.getVYSKA_PANELU() > 0)) {
+            return true;
+        }
+        if(x < 0 || y < 0){
+            return true;
+        }
+            for (int i = 0; i < vokno.getAktualniUroven().pocetPrekazek(); i++) {
+                if (new Rectangle(x - 1, y - 1, sirkaKruhu + 2, vyskaKruhu + 2).intersects(vokno.getAktualniUroven().getOkraje(i))) {
+                    return true;
+                }
             }
-        }
-        //1. prekazka zprava
-        if(25 < y && y < 250){
-            if(119 < x && x < 121){
-                x = 121;
-            }
-        }
-        //v levo nahore zleva
-        if(25 < y && y < 130){
-            if(x > 134 && x < 136){
-                x = 134;
-            }
-        }
-        //v levo nahore zprava
-        if(25 < y && y < 130){
-            if(x > 249 && x < 251){
-                x = 251;
-            }
-        }
-        //v levo niz zleva
-        if(144 < y && y < 250){
-            if(136 > x && x > 134){
-                x = 134;
-            }
-        }
-        //v levo niz zprava
-        if(144 < y && y < 250){
-            if(249 < x && x < 251){
-                x = 251;
-            }
-        }
-        //p vprostred zleva
-        if(264 < y && y < 341){
-            if(x < 36 && x > 34){
-                x = 34;
-            }
-        }
-        //p vravo dole zleva
-        if(355 < y && y < 430){
-            if(168 > x && x > 164){
-                x = 164;
-            }
-        }
-        //vprava dole zprava
-        if(355 < y && y < 430){
-            if(x > 249 && x < 251){
-                x = 251;
-            }
-        }
-        // v levo dole zleva
-        if(355 < y && y < 430){
-            if(34 < x && x < 37){
-                x = 34;
-            }
-        }
-        //prostredek zprava :-)
-        if(264 < y && y < 341){
-            if(x < 251 && x > 249){
-                x = 251;
-            }
-        }
-        //vlevo dole zprava
-        if(355 < y && y < 430){
-            if(146 > x && x > 143){
-                x = 146;
-            }
-        }
-        //v okne zleva
-        if (x <= 0) {
-            x = 0;
-        }
-        //1. no nahore
-        if(x > 35 && x < 121){
-            if(y > 24 && y < 249){
-                y = 24;
-            }
-        }
-        //1. no dole
-        if(x > 35 && x < 121){
-            if(y > 24 && y < 251){
-                y = 251;
-            }
-        }
-        //v levo nahore no nahore
-        if(x > 135 && x < 250){
-            if(y > 24 && y < 129){
-                y = 24;
-            }
-        }
-        //v levo dole no dole
-        if(x > 135 && x < 250){
-            if(y > 24 && y < 131){
-                y = 131;
-            }
-        }
-        //v levo niz no nahore
-        if(x > 135 && x < 250){
-            if(y > 144 && y < 146){
-                y = 144;
-            }
-        }
-        //v levo niz no niz
-        if(x > 135 && x < 250){
-            if(y > 239 && y < 251){
-                y = 251;
-            }
-        }
-        //v prostred no nohore
-        if(x > 35 && x < 250){
-            if(y > 264 && y < 267){
-                y = 264;
-            }
-        }
-        //v prostred no dole
-        if(x > 35 && x < 250){
-            if(y > 337 && y < 341){
-                y = 341;
-            }
-        }
-        //v levo dole no nahore
-        if(x > 35 && x < 145){
-            if(y > 354 && y < 357){
-                y = 354;
-            }
-        }
-        //v levo dole no dole
-        if(x > 35 && x < 145){
-            if(y > 429 && y < 431){
-                y = 431;
-            }
-        }
-        //vpravo dole no nahore
-        if(x > 164 && x < 250){
-            if(y > 354 && y < 373){
-                y = 354;
-            }
-        }
-        //vpravo dole no
-        if(x > 164 && x < 250){
-            if(y > 429 && y < 431){
-                y = 431;
-            }
-        }
-        if (y <= 0) {
-            y = 0;
-        }
+        return false;
     }
     @Override
     public void keyPressed(KeyEvent e){
         int klavesa = e.getKeyCode();
         if(klavesa == KeyEvent.VK_A || klavesa == KeyEvent.VK_LEFT){
-            smerY = 0;
-            smerX = -rychlost;
+                smerY = 0;
+                smerX = -rychlost;
         }else if(klavesa == KeyEvent.VK_W || klavesa == KeyEvent.VK_UP){
-            smerX = 0;
-            smerY = -rychlost;
+                smerX = 0;
+                smerY = -rychlost;
         }else if(klavesa == KeyEvent.VK_D || klavesa == KeyEvent.VK_RIGHT){
-            smerY = 0;
-            smerX = rychlost;
+                smerY = 0;
+                smerX = rychlost;
         }else if(klavesa == KeyEvent.VK_S || klavesa == KeyEvent.VK_DOWN){
-            smerX = 0;
-            smerY = rychlost;
+                smerX = 0;
+                smerY = rychlost;
         }
     }
     @Override
     public void keyReleased(KeyEvent e) {
         int klavesa = e.getKeyCode();
         if(klavesa == KeyEvent.VK_A || klavesa == KeyEvent.VK_LEFT){
-            smerY = 0;
-            smerX = -rychlost;
+                smerY = 0;
+                smerX = -rychlost;
         }else if(klavesa == KeyEvent.VK_W || klavesa == KeyEvent.VK_UP){
-            smerX = 0;
-            smerY = -rychlost;
+                smerX = 0;
+                smerY = -rychlost;
         }else if(klavesa == KeyEvent.VK_D || klavesa == KeyEvent.VK_RIGHT){
-            smerY = 0;
-            smerX = rychlost;
+                smerY = 0;
+                smerX = rychlost;
         }else if(klavesa == KeyEvent.VK_S || klavesa == KeyEvent.VK_DOWN){
-            smerX = 0;
-            smerY = rychlost;
+                smerX = 0;
+                smerY = rychlost;
         }
     }
     @Override
@@ -228,4 +92,5 @@ public class Hrac implements KeyListener{
     public Rectangle getOkraje(){
         return new Rectangle(x, y, sirkaKruhu, vyskaKruhu);
     }
+
 }

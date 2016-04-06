@@ -1,4 +1,7 @@
+import jidlo.Svaca;
+import urovne.Uroven;
 import urovne.Uroven1;
+import urovne.Uroven2;
 
 import java.awt.*;
 import java.awt.Graphics;
@@ -9,12 +12,11 @@ import javax.swing.Timer;
 import java.util.*;
 
 public class oknoHry extends JPanel {
-    private int zivoty;
+    private int zivoty = 3;
     private Hrac Hrac;
     public int  POCET_CTVERCU = 150;
-    public int POCET_KONTROLNICH_CTVERCU;
+    public int POCET_KONTROLNICH_CTVERCU = 85;
     private  Svaca[] poleCtvercu;
-    ArrayList<Svaca> jidlo = new ArrayList<Svaca>();
     public boolean viditelny = true;
     public int cas;
     private boolean vyhrals = false;
@@ -23,34 +25,31 @@ public class oknoHry extends JPanel {
     private OkrajeP1 okrajeP1;
     private Potvurka2 potvurka2;
     private Potvurka3 potvurka3;
-    private Uroven1 uroven1;
+    private Uroven aktualniUroven;
     private SuperJidlo superjidlo;
     public int uroven = 1;
+    public Spusteni program;
     public oknoHry(Spusteni hrac){
-        pusteniLevel1();
+        pusteniLevel1(uroven, POCET_KONTROLNICH_CTVERCU, vyhrals, score, zivoty);
     }
-    public void pusteniLevel1(){
+    public void pusteniLevel1(int uroven,int POCET_KONTROLNICH_CTVERCU,boolean vyhrals, int score, int zivoty){
         this.poleCtvercu = new Svaca[POCET_CTVERCU];
         this.Hrac = new Hrac(this);
         this.potvurka = new Potvurka(this);
         this.potvurka2 = new Potvurka2(this);
-        this.uroven1 = new Uroven1();
         this.potvurka3 = new Potvurka3(this);
         this.superjidlo = new SuperJidlo(this);
         this.setPreferredSize(new Dimension(300, 500));
-        this.setBackground(Color.RED);
-        this.setFocusable(true);
-        zivoty = 3;
-        int y = 25;
-        for(int i = 0;i < 15;i++){
-            int x = 10;
-            for(int k = 0;k < 10;k++) {
-                x = x + 25;
-                Svaca p = new Svaca(x, y);
-                jidlo.add(p);
-            }
-            y = y + 30;
+        if(uroven == 1) {
+            this.setBackground(Color.RED);
+            this.aktualniUroven = new Uroven1();
         }
+        if(uroven == 2){
+            this.setBackground(Color.DARK_GRAY);
+            this.aktualniUroven = new Uroven2();
+        }
+        this.setFocusable(true);
+        int y = 25;
         PoslouchaniCasovace publikum = new PoslouchaniCasovace();
         Timer casovac = new Timer(10, publikum);
         casovac.start();
@@ -63,25 +62,20 @@ public class oknoHry extends JPanel {
         if(vyhrals == true){
             this.setBackground(Color.BLUE);
             vypisVyhru(g);
-            return;
+            uroven++;
+            aktualniUroven.vykresliUroven(g);
         }
+        aktualniUroven.vykresliUroven(g);
         if(zivoty <= 0){
             vypsaniProhry(g);
             return;
         }
-        for (int i = 0; i < POCET_CTVERCU; i++) {
-            if (jidlo.get(i).isViditelny()) {
-                jidlo.get(i).vykresliSeSvaca(g);
-            } else {
-                g.setColor(Color.RED);
-            }
-        }
         Hrac.vykresliSe(g);
-        if(uroven == 1) {
-            uroven1.vykresliPrekazky(g);
+            //aktualniUroven.vykresliPrekazky(g);
             if(viditelny == true) {
                 superjidlo.vykresleniSuperJidla(g);
             }
+        if(uroven == 1) {
             potvurka.kresleniPotvurky1(g);
             potvurka2.kresleniPotvurky2(g);
             if (score < 100) {
@@ -126,28 +120,34 @@ public class oknoHry extends JPanel {
             cas = pomoc/100;
             int i = 0;
             for(; i < POCET_CTVERCU;i++) {
-                Rectangle okrajeJidla = jidlo.get(i).getOkraje();
-                if(uroven == 1) {
-                    for (int j = 0; j < uroven1.pocetPrekazek(); j++) {
-                        Rectangle prekazka = uroven1.getOkraje(j);
+                Rectangle okrajeJidla = aktualniUroven.jidlo.get(i).getOkraje();
+                    for (int j = 0; j < aktualniUroven.pocetPrekazek(); j++) {
+                        Rectangle prekazka = aktualniUroven.getOkraje(j);
                         if (prekazka.intersects(okrajeJidla)) {
-                            jidlo.get(i).skryt();
+                            if(aktualniUroven.jidlo.get(i).isViditelny()) {
+                                POCET_KONTROLNICH_CTVERCU--;
+                            }
+                            aktualniUroven.jidlo.get(i).skryt();
+                            //System.out.println(POCET_KONTROLNICH_CTVERCU);
                         }
                     }
-                }
-                    Svaca prek = jidlo.get(i);
-                    Rectangle okrajePrekazky = jidlo.get(i).getOkraje();
+                    Svaca prek = aktualniUroven.jidlo.get(i);
+                    Rectangle okrajePrekazky = aktualniUroven.jidlo.get(i).getOkraje();
                     if (okrajePozorKolize.intersects(okrajePrekazky)) {
-                        if(jidlo.get(i).isViditelny() == true){
-                            jidlo.get(i).skryt();
+                        if(aktualniUroven.jidlo.get(i).isViditelny() == true){
+                            aktualniUroven.jidlo.get(i).skryt();
                             score++;
-                            POCET_KONTROLNICH_CTVERCU++;
+                            POCET_KONTROLNICH_CTVERCU--;
                         }
                     }
             }
-            if(POCET_KONTROLNICH_CTVERCU == 75){
+            if(POCET_KONTROLNICH_CTVERCU == 0){
                 vyhrals = true;
                 score = score + zivoty * 30;
+                uroven++;
+                POCET_KONTROLNICH_CTVERCU = 150;
+                vyhrals = false;
+                pusteniLevel1(uroven, POCET_KONTROLNICH_CTVERCU, vyhrals, score, zivoty);
             }
             /*
             Rectangle OP1 = prekazky.getOkraje1();
@@ -223,6 +223,9 @@ public class oknoHry extends JPanel {
     }
     private Rectangle getOkraje(){
         return new Rectangle(130, 200, 10, 10);
+    }
+    public Uroven getAktualniUroven(){
+        return aktualniUroven;
     }
 
 }

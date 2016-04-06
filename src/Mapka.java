@@ -1,3 +1,5 @@
+import jidlo.Svaca;
+
 import javax.swing.*;
 import java.awt.*;
 

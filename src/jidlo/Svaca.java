@@ -29,4 +29,7 @@ public class Svaca {
     public void removeIf(boolean intersects) {
 
     }
+    public int getDelkaStrany(){
+        return DELKASTRANY;
+    }
 }

@@ -40,7 +40,7 @@ public class Nabidka extends JPanel implements ActionListener{
         if (pri.equals("Návod")) {
 
         }
-        if (pri.equals("rvůrce")) {
+        if (pri.equals("Tvůrce")) {
 
         }
         if(pri.equals("Vypnout")){

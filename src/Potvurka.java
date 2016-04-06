@@ -1,3 +1,5 @@
+import jidlo.Svaca;
+
 import java.awt.*;
 public class Potvurka {
     private int pp1, pp2, smerX, smerY, rychlost, cislo;
