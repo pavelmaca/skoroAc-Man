@@ -17,8 +17,10 @@ public class Uroven1 extends Uroven {
         };
         barvaVnitrku = Color.DARK_GRAY;
         barvaOkraje = Color.YELLOW;
-    }
-    private void vykresliSuperJidlo(Graphics g){
 
+    }
+    public void vykresliSuperJidlo(Graphics g){
+        g.setColor(Color.BLUE);
+        g.fillRect(133, 200, 10, 10);
     }
 }

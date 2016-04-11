@@ -1,7 +1,9 @@
+package postavicky;
+
 import java.awt.*;
 public class Potvurka2 {
     private int pp1, pp2, smerX, smerY, rychlost, cislo;
-    public Potvurka2(oknoHry oknoHry) {
+    public Potvurka2() {
         Bod1();
     }
     public void Bod1() {

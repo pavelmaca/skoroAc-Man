@@ -1,3 +1,5 @@
+package postavicky;
+
 import java.awt.*;
 
 /**
@@ -6,23 +8,23 @@ import java.awt.*;
 public class Potvurka3 {
     private int x;
     private int y;
-    private int rychlost;
+    private int rychlostP3;
     private int smerY;
-    public Potvurka3(oknoHry oknoHry){
+    public Potvurka3(){
         vychoziPoloha();
     }
     public void vychoziPoloha(){
         this.x = 255;
         this.y = 443;
-        rychlost = -3;
+        rychlostP3 = -3;
         pohyb();
     }
     public void pohyb(){
         if(y <= 0){
             vychoziPoloha();
         }else{
-            smerY = rychlost;
-            y += rychlost;
+            smerY = rychlostP3;
+            y += rychlostP3;
         }
     }
     public void vykresleniPotvurky3(Graphics g){

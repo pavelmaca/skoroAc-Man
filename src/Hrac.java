@@ -1,26 +1,23 @@
-import jidlo.Svaca;
-import postavicky.Smery;
 import urovne.Uroven;
-import urovne.Uroven1;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 public class Hrac implements KeyListener{
     private Color barva = Color.WHITE;
     private final int vyskaKruhu = 15;
     private final int sirkaKruhu = 15;
-    public int x, y, smerX, smerY, zivoty, rychlost;
-    private oknoHry vokno;
+    public int x, y, smerX, smerY, zivoty, rychlostHrace;
+    private  oknoHry vokno;
     private Uroven aktualniUroven;
     private boolean poh = true;
     public Hrac(oknoHry vokno){
         //this.vokno = new oknoHry();
         this.vokno = vokno;
-        rychlost = 1;
         x = 130;
         y = 230;
         zivoty = 3;
+        rychlostHrace = 1;
     }
     public void vykresliSe(Graphics g){
         g.setColor(barva);
@@ -57,16 +54,16 @@ public class Hrac implements KeyListener{
         int klavesa = e.getKeyCode();
         if(klavesa == KeyEvent.VK_A || klavesa == KeyEvent.VK_LEFT){
                 smerY = 0;
-                smerX = -rychlost;
+                smerX = -rychlostHrace;
         }else if(klavesa == KeyEvent.VK_W || klavesa == KeyEvent.VK_UP){
                 smerX = 0;
-                smerY = -rychlost;
+                smerY = -rychlostHrace;
         }else if(klavesa == KeyEvent.VK_D || klavesa == KeyEvent.VK_RIGHT){
                 smerY = 0;
-                smerX = rychlost;
+                smerX = rychlostHrace;
         }else if(klavesa == KeyEvent.VK_S || klavesa == KeyEvent.VK_DOWN){
                 smerX = 0;
-                smerY = rychlost;
+                smerY = rychlostHrace;
         }
     }
     @Override
@@ -74,16 +71,16 @@ public class Hrac implements KeyListener{
         int klavesa = e.getKeyCode();
         if(klavesa == KeyEvent.VK_A || klavesa == KeyEvent.VK_LEFT){
                 smerY = 0;
-                smerX = -rychlost;
+                smerX = -rychlostHrace;
         }else if(klavesa == KeyEvent.VK_W || klavesa == KeyEvent.VK_UP){
                 smerX = 0;
-                smerY = -rychlost;
+                smerY = -rychlostHrace;
         }else if(klavesa == KeyEvent.VK_D || klavesa == KeyEvent.VK_RIGHT){
                 smerY = 0;
-                smerX = rychlost;
+                smerX = rychlostHrace;
         }else if(klavesa == KeyEvent.VK_S || klavesa == KeyEvent.VK_DOWN){
                 smerX = 0;
-                smerY = rychlost;
+                smerY = rychlostHrace;
         }
     }
     @Override

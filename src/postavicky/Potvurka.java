@@ -1,25 +1,36 @@
 package postavicky;
 
+import jidlo.Svaca;
+
 import java.awt.*;
-
-/**
- * Created by Admin on 4.4.2016.
- */
 public class Potvurka {
-    int[] souradnice = new int[2];
-    int velikost = 20;
-    Smery smer;
-    Color barva = Color.orange;
-    //int rychlost;
-
-    public Potvurka(int x, int y, Smery smer){
-        souradnice[0] = x;
-        souradnice[1] = y;
-        this.smer = smer;
+    private int pp1, pp2, smerX, smerY, rychlostP1, cislo;
+    private Svaca smerr;
+    public Potvurka() {
+        Bod1();
     }
-
-    public void vykresleni(Graphics g){
-        g.setColor(barva);
-        g.fillRect(souradnice[0],souradnice[1] , velikost, velikost);
+    public void Bod1() {
+        pp1 = 150;
+        pp2 = 346;
+        rychlostP1 = 2;
+        polohaPotvurky();
+    }
+    public void polohaPotvurky(){
+        this.smerr = smerr;
+        pp1 += smerX;
+        smerX = rychlostP1;
+        if(pp1 < 45){
+            rychlostP1 = 2;
+        }
+        if(pp1 > 235){
+            rychlostP1 = - 2;
+        }
+    }
+    public void kresleniPotvurky1(Graphics g){
+        g.setColor(Color.ORANGE);
+        g.fillRect(pp1, pp2, 20, 20);
+    }
+    public Rectangle getOkrajePP1(){
+        return new Rectangle(pp1, pp2, 20, 20);
     }
 }

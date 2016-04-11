@@ -6,7 +6,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Created by Admin on 5.4.2016.
+ * This abstract class includes all of thinks witch have all class in share.
+ * For example Pac-Man's pills, power pill(if power pill exist), walls, ghosts & player's figure.
  */
 abstract public class Uroven {
     protected int[][] parametryPrekazek;
@@ -15,6 +16,7 @@ abstract public class Uroven {
     public int pocetPrekazek(){
         return parametryPrekazek.length;
     }
+    //public int pocetPotvurek(){return parametryPotvurek.lenght;}
     public ArrayList<Svaca> jidlo = new ArrayList<Svaca>();
     //protected int x;
     //protected int y;
@@ -24,8 +26,11 @@ abstract public class Uroven {
         POCET_CTVERCU = 150;
         POCET_KONTROLNICH_CTVERCU = 150;
         vytvoreniJidla();
-        skrytJidlo();
     }
+
+    /**
+     * Method witch create a pills. It works like an array list.
+     */
     private void vytvoreniJidla(){
         int y = 25;
         for(int i = 0;i < 15;i++){
@@ -38,6 +43,11 @@ abstract public class Uroven {
             y = y + 30;
         }
     }
+
+    /**
+     * Method with paint walls.
+     * @param g
+     */
     private void vykresliPrekazky(Graphics g) {
         for (int i = 0; i < parametryPrekazek.length; i++) {
             int[] parametryPrekazky = parametryPrekazek[i];
@@ -47,10 +57,21 @@ abstract public class Uroven {
             g.drawRect(parametryPrekazky[0], parametryPrekazky[1], parametryPrekazky[2], parametryPrekazky[3]);
         }
     }
+
+    /**
+     * Method paints actual level. Here the picture of level gets together from smaller parts.
+     * @param g
+     */
     public void vykresliUroven(Graphics g){
         vykresliPrekazky(g);
         vykresliJidlo(g);
+        //if()
     }
+
+    /**
+     * Method, witch draws pills.
+     * @param g
+     */
     private void vykresliJidlo(Graphics g){
         for (int i = 0; i < POCET_CTVERCU; i++) {
             if (jidlo.get(i).isViditelny()) {
@@ -60,9 +81,18 @@ abstract public class Uroven {
             }
         }
     }
-    private void skrytJidlo(){
-    }
+    /**
+    private void vykresliPostavicky(Graphics g){
+        for (int i = 0; i < parametryPotvurek.lenght; i++) {
 
+        }
+    }
+    */
+    /**
+     * Method witch gets space for every wall.
+     * @param i index of wall
+     * @return Rectangle
+     */
     public Rectangle getOkraje(int i) {
         return new Rectangle((parametryPrekazek[i][0]), (parametryPrekazek[i][1]), (parametryPrekazek[i][2]), (parametryPrekazek[i][3]));
     }
