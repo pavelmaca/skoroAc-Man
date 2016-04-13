@@ -1,3 +1,5 @@
+package hra;
+
 import jidlo.Svaca;
 import postavicky.Potvurka;
 import postavicky.Potvurka2;
@@ -5,6 +7,8 @@ import postavicky.Potvurka3;
 import urovne.Uroven;
 import urovne.Uroven1;
 import urovne.Uroven2;
+import postavicky.Hrac;
+import jidlo.SuperJidlo;
 import java.awt.*;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -26,12 +30,11 @@ public class oknoHry extends JPanel {
     private boolean vyhrals = false;
     public int score = 0;
     private Potvurka potvurka;
-    private OkrajeP1 okrajeP1;
     private Potvurka2 potvurka2;
     private Potvurka3 potvurka3;
     private Uroven aktualniUroven;
     private SuperJidlo superjidlo;
-    private int uroven = 1;
+    private int uroven = 2;
     private double fps;
     private double lastTime;
     int tickindex=0;

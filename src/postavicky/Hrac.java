@@ -1,3 +1,6 @@
+package postavicky;
+
+import hra.oknoHry;
 import urovne.Uroven;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -8,11 +11,11 @@ public class Hrac implements KeyListener{
     private final int vyskaKruhu = 15;
     private final int sirkaKruhu = 15;
     public int x, y, smerX, smerY, zivoty, rychlostHrace;
-    private  oknoHry vokno;
+    private oknoHry vokno;
     private Uroven aktualniUroven;
     private boolean poh = true;
     public Hrac(oknoHry vokno){
-        //this.vokno = new oknoHry();
+        //this.vokno = new hra.oknoHry();
         this.vokno = vokno;
         x = 130;
         y = 230;

@@ -1,3 +1,5 @@
+package hra;
+
 import javax.swing.*;
 import java.awt.*;
 public class Spusteni extends JFrame {

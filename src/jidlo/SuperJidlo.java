@@ -1,3 +1,7 @@
+package jidlo;
+
+import hra.oknoHry;
+
 import java.awt.*;
 
 /**

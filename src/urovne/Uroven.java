@@ -1,6 +1,8 @@
 package urovne;
 
 import jidlo.Svaca;
+import postavicky.Potvurka;
+import postavicky.Potvurkaa;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,13 +13,15 @@ import java.util.ArrayList;
  */
 abstract public class Uroven {
     protected int[][] parametryPrekazek;
+    protected int[][] parametryPotvurek;
     protected Color barvaVnitrku;
     protected Color barvaOkraje;
     public int pocetPrekazek(){
         return parametryPrekazek.length;
     }
-    //public int pocetPotvurek(){return parametryPotvurek.lenght;}
+    public int pocetPotvurek(){return parametryPotvurek.length;}
     public ArrayList<Svaca> jidlo = new ArrayList<Svaca>();
+    protected Potvurkaa potvurka;
     //protected int x;
     //protected int y;
     protected int POCET_CTVERCU;
@@ -65,7 +69,7 @@ abstract public class Uroven {
     public void vykresliUroven(Graphics g){
         vykresliPrekazky(g);
         vykresliJidlo(g);
-        //if()
+        vykresliPostavicky(g);
     }
 
     /**
@@ -81,13 +85,13 @@ abstract public class Uroven {
             }
         }
     }
-    /**
     private void vykresliPostavicky(Graphics g){
-        for (int i = 0; i < parametryPotvurek.lenght; i++) {
-
+        g.setColor(Color.ORANGE);
+        for (int i = 0; i < parametryPotvurek.length; i++) {
+            int[] parmetryPotvurky = parametryPotvurek[i];
+            g.fillRect(parmetryPotvurky[0], parmetryPotvurky[1], parmetryPotvurky[2], parmetryPotvurky[3]);
         }
     }
-    */
     /**
      * Method witch gets space for every wall.
      * @param i index of wall
@@ -95,6 +99,9 @@ abstract public class Uroven {
      */
     public Rectangle getOkraje(int i) {
         return new Rectangle((parametryPrekazek[i][0]), (parametryPrekazek[i][1]), (parametryPrekazek[i][2]), (parametryPrekazek[i][3]));
+    }
+    public Rectangle getOkrajePotvurky(int i){
+        return new Rectangle(parametryPotvurek[i][0], parametryPotvurek[i][1], parametryPotvurek[i][2], parametryPotvurek[i][3]);
     }
 }
 

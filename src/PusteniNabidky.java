@@ -6,10 +6,10 @@ import java.awt.*;
  */
 public class PusteniNabidky extends JFrame{
     public PusteniNabidky(){
-        setTitle("Nabidka");
+        setTitle("hra.Nabidka");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(300, 500));
-        //Nabidka vokno = new Nabidka(this);
+        //hra.Nabidka vokno = new hra.Nabidka(this);
         //add(vokno);
         setResizable(false);
         pack();

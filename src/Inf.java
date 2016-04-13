@@ -2,11 +2,15 @@
  * Created by Admin on 7.3.2016.
  */
 import java.util.Scanner;
-
 public class Inf {
-
     public static void main(String[] args) throws Exception {
-
+        //System.out.println(preved(16, 16));
+        int [] pole = {1, 0, 1, 0};
+        System.out.println(prepocetZ2do10(pole));
+        int[] pole2 = {0, 1, 1};
+        pocitani(pole2, pole);
+        //System.out.println(Character.getDirectionality(1+'a'));
+        /*
         double celkem = 2;
         double chybnych = 2;
         double pstChyby = 0.03;
@@ -25,6 +29,8 @@ public class Inf {
 
 
         vypocetIneraktivni();
+        preved(15);
+        */
     }
 
     public static void vypocetIneraktivni() throws Exception {
@@ -75,5 +81,35 @@ public class Inf {
 
         return kombinacniCislo(n, k) * Math.pow(pstK, k) * Math.pow(1 - pstK, n-k);
     }
+    public static String preved(int v, int vyslednaSoustava){
+        char c;
+        int zbytek = v % vyslednaSoustava;
+        c = (char)(zbytek <= 9 ? zbytek + '0' : (zbytek - 10) + 'a');
+        if(v == 0){
+            return "";
+        }
+        String s = preved(v / vyslednaSoustava, vyslednaSoustava);
+        return s + c;
+    }
+    public static double prepocetZ2do10(int[] pole){
+        double vysledek = 0;
+            for (int i = pole.length; i > 0; i--) {
+                if (pole[i] == 1){
+                    vysledek = vysledek + Math.pow(2, i);
+                }
+            }
+        return vysledek;
+    }
+    public static void pocitani(int[] vstup1, int[] vstup2){
+        double cislo = prepocetZ2do10(vstup1);
+        System.out.println(cislo);
+        double  cislo2 = prepocetZ2do10(vstup2);
+        System.out.println(cislo2);
+        //System.out.println(preved((int)(cislo + cislo2), 2));
+        System.out.println(preved((int)(cislo * cislo2), 2));
+        //System.out.println(preved((int)(cislo / cislo2), 2));
+        //System.out.println(preved((int)(cislo - cislo2), 2));
+    }
+
 
 }

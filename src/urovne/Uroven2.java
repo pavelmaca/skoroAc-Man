@@ -1,7 +1,8 @@
 package urovne;
 
 import postavicky.Postavicka;
-//import postavicky.Potvurkaa;
+import postavicky.Potvurkaa;
+import postavicky.Potvurky2;
 import postavicky.Smery;
 
 import java.awt.*;
@@ -10,8 +11,6 @@ import java.awt.*;
  * Created by Admin on 4.4.2016.
  */
 public class Uroven2 extends Uroven {
-    //private Potvurkaa potvurkaa;
-    private Postavicka postavicka;
     public Uroven2() {
         parametryPrekazek = new int[][]{
                 {53, 40, 20, 215},
@@ -34,6 +33,9 @@ public class Uroven2 extends Uroven {
         };
         barvaVnitrku = Color.RED;
         //this.potvurkaa = new Potvurkaa(15, 15, Smery.dolu);
+        parametryPotvurek = new int[][]{
+                {27, 89, 20, 20, 0}
+        };
     }
 
 }
