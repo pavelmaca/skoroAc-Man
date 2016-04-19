@@ -1,15 +1,15 @@
-package hra;
+package okna;
 
-import jidlo.Svaca;
-import postavicky.Potvurka;
-import postavicky.Potvurka2;
-import postavicky.Potvurka3;
-import postavicky.Potvurkaa;
+import objekty.jidlo.Svaca;
+import objekty.postavicky.Potvurka;
+import objekty.postavicky.Potvurka2;
+import objekty.postavicky.Potvurka3;
+import objekty.postavicky.Potvurkaa;
 import urovne.Engine;
 import urovne.Uroven1;
 import urovne.Uroven2;
-import postavicky.Hrac;
-import jidlo.SuperJidlo;
+import objekty.postavicky.Hrac;
+import objekty.jidlo.SuperJidlo;
 import java.awt.*;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;

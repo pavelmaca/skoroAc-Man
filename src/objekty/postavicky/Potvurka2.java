@@ -1,4 +1,4 @@
-package postavicky;
+package objekty.postavicky;
 
 import java.awt.*;
 public class Potvurka2 {

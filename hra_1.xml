@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="hra" default="all">
+<project name="okna" default="all">
   
   
   <property file="hra_1.properties"/>
@@ -117,15 +117,15 @@
   
   <target name="init.artifacts">
     <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
-    <property name="artifact.output.hra:jar" value="${basedir}/out/artifacts/Hra_jar"/>
+    <property name="artifact.output.okna:jar" value="${basedir}/out/artifacts/Hra_jar"/>
     <property name="artifact.output.žravá_koule" value="${basedir}/out/artifacts/ravá_koule"/>
     <mkdir dir="${artifacts.temp.dir}"/>
     <property name="temp.jar.path.Hra.jar" value="${artifacts.temp.dir}/Hra.jar"/>
     <property name="temp.jar.path.Žravá_koule.apk" value="${artifacts.temp.dir}/Žravá_koule.apk"/>
   </target>
   
-  <target name="artifact.hra:jar" depends="init.artifacts, compile.module.hra" description="Build &#39;Hra:jar&#39; artifact">
-    <property name="artifact.temp.output.hra:jar" value="${artifacts.temp.dir}/Hra_jar"/>
+  <target name="artifact.okna:jar" depends="init.artifacts, compile.module.hra" description="Build &#39;Hra:jar&#39; artifact">
+    <property name="artifact.temp.output.okna:jar" value="${artifacts.temp.dir}/Hra_jar"/>
     <mkdir dir="${artifact.temp.output.hra:jar}"/>
     <jar destfile="${temp.jar.path.Hra.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
       <zipfileset dir="${hra.output.dir}"/>

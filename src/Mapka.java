@@ -1,4 +1,4 @@
-import jidlo.Svaca;
+import objekty.jidlo.Svaca;
 
 import javax.swing.*;
 import java.awt.*;

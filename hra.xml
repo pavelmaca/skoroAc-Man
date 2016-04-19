@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="hra" default="all">
+<project name="okna" default="all">
   
   
   <property file="hra.properties"/>

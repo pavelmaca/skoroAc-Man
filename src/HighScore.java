@@ -1,4 +1,4 @@
-import hra.oknoHry;
+import okna.oknoHry;
 
 import java.awt.*;
 
@@ -12,8 +12,7 @@ public class HighScore {
     int[] highScore = new int[10];
     private int x;
     private int y;
-    public HighScore(){
-    }
+    public HighScore(){    }
     public void vykresleni(Graphics g){
         for (int i = 0; i < highScoreJmena.length ; i++) {
             g.drawString(highScoreJmena[i], x, y );

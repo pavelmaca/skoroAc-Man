@@ -1,4 +1,4 @@
-package jidlo;
+package objekty.jidlo;
 
 import java.awt.*;
 public class Svaca {

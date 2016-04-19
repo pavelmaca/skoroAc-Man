@@ -1,8 +1,8 @@
 package urovne;
 
-import jidlo.Svaca;
-import postavicky.Hrac;
-import postavicky.Potvurkaa;
+import objekty.jidlo.Svaca;
+import objekty.postavicky.Hrac;
+import objekty.postavicky.Potvurkaa;
 import java.awt.*;
 import java.util.ArrayList;
 

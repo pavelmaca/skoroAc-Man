@@ -1,4 +1,4 @@
-package postavicky;
+package objekty.postavicky;
 
 /**
  * Created by Admin on 12.4.2016.

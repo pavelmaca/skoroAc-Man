@@ -1,4 +1,4 @@
-package hra;
+package okna;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ public class Spusteni extends JFrame {
         setPreferredSize(new Dimension(300, 500));
         //add(vokno);
         //remove(vokno);
-        //add(hra);
+        //add(okna);
         setResizable(false);
         pack();
         return;
@@ -24,8 +24,8 @@ public class Spusteni extends JFrame {
     }
     private void otevriNabidku(){
         nabidka = new Nabidka(this);
-        //add(hra);
-        //hra.setVisible(false);
+        //add(okna);
+        //okna.setVisible(false);
         add(nabidka);
         pack();
         this.setVisible(true);

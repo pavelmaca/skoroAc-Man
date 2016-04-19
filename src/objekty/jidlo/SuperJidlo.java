@@ -1,6 +1,6 @@
-package jidlo;
+package objekty.jidlo;
 
-import hra.oknoHry;
+import okna.oknoHry;
 
 import java.awt.*;
 

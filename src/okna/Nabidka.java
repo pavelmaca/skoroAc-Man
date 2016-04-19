@@ -1,9 +1,8 @@
-package hra;
+package okna;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 
 /**
  * Created by Admin on 24.3.2016.

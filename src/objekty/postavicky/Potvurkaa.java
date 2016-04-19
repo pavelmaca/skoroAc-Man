@@ -1,7 +1,7 @@
-package postavicky;
+package objekty.postavicky;
 
 import java.awt.*;
-import hra.oknoHry;
+import okna.oknoHry;
 /**
  * Created by Admin on 4.4.2016.
  */
