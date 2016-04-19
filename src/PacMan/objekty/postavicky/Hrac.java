@@ -1,7 +1,7 @@
-package objekty.postavicky;
+package PacMan.objekty.postavicky;
 
-import okna.oknoHry;
-import urovne.Engine;
+import PacMan.okna.oknoHry;
+import PacMan.Engine;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,7 +15,7 @@ public class Hrac implements KeyListener{
     private Engine aktualniUroven;
     private boolean poh = true;
     public Hrac(oknoHry vokno){
-        //this.vokno = new okna.oknoHry();
+        //this.vokno = new PacMan.okna.oknoHry();
         this.vokno = vokno;
         x = 130;
         y = 230;

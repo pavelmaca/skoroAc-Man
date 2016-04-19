@@ -1,4 +1,4 @@
-package sluzby;
+package PacMan.sluzby;
 
 /**
  * Created by Admin on 19.4.2016.

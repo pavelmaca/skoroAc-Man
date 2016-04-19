@@ -1,6 +1,6 @@
-package objekty.postavicky;
+package PacMan.objekty.postavicky;
 
-import objekty.jidlo.Svaca;
+import PacMan.objekty.jidlo.Svaca;
 
 import java.awt.*;
 public class Potvurka {

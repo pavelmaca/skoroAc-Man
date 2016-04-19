@@ -1,4 +1,7 @@
-package okna;
+package PacMan;
+
+import PacMan.okna.Nabidka;
+import PacMan.okna.oknoHry;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +15,7 @@ public class Spusteni extends JFrame {
         setPreferredSize(new Dimension(300, 500));
         //add(vokno);
         //remove(vokno);
-        //add(okna);
+        //add(PacMan.okna);
         setResizable(false);
         pack();
         return;
@@ -24,8 +27,8 @@ public class Spusteni extends JFrame {
     }
     private void otevriNabidku(){
         nabidka = new Nabidka(this);
-        //add(okna);
-        //okna.setVisible(false);
+        //add(PacMan.okna);
+        //PacMan.okna.setVisible(false);
         add(nabidka);
         pack();
         this.setVisible(true);

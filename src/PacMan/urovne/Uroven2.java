@@ -1,4 +1,6 @@
-package urovne;
+package PacMan.urovne;
+
+import PacMan.Engine;
 
 import java.awt.*;
 

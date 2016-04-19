@@ -1,15 +1,16 @@
-package okna;
+package PacMan.okna;
 
-import objekty.jidlo.Svaca;
-import objekty.postavicky.Potvurka;
-import objekty.postavicky.Potvurka2;
-import objekty.postavicky.Potvurka3;
-import objekty.postavicky.Potvurkaa;
-import urovne.Engine;
-import urovne.Uroven1;
-import urovne.Uroven2;
-import objekty.postavicky.Hrac;
-import objekty.jidlo.SuperJidlo;
+import PacMan.Spusteni;
+import PacMan.objekty.jidlo.Svaca;
+import PacMan.objekty.postavicky.Potvurka;
+import PacMan.objekty.postavicky.Potvurka2;
+import PacMan.objekty.postavicky.Potvurka3;
+import PacMan.objekty.postavicky.Potvurkaa;
+import PacMan.Engine;
+import PacMan.urovne.Uroven1;
+import PacMan.urovne.Uroven2;
+import PacMan.objekty.postavicky.Hrac;
+import PacMan.objekty.jidlo.SuperJidlo;
 import java.awt.*;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;

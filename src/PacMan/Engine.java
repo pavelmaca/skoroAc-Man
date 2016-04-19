@@ -1,8 +1,8 @@
-package urovne;
+package PacMan;
 
-import objekty.jidlo.Svaca;
-import objekty.postavicky.Hrac;
-import objekty.postavicky.Potvurkaa;
+import PacMan.objekty.jidlo.Svaca;
+import PacMan.objekty.postavicky.Hrac;
+import PacMan.objekty.postavicky.Potvurkaa;
 import java.awt.*;
 import java.util.ArrayList;
 

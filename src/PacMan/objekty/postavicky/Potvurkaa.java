@@ -1,7 +1,7 @@
-package objekty.postavicky;
+package PacMan.objekty.postavicky;
 
 import java.awt.*;
-import okna.oknoHry;
+import PacMan.okna.oknoHry;
 /**
  * Created by Admin on 4.4.2016.
  */

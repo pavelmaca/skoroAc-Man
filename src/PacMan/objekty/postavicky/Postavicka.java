@@ -1,4 +1,4 @@
-package objekty.postavicky;
+package PacMan.objekty.postavicky;
 
 import java.awt.*;
 

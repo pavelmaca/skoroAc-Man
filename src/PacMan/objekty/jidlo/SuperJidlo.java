@@ -1,6 +1,6 @@
-package objekty.jidlo;
+package PacMan.objekty.jidlo;
 
-import okna.oknoHry;
+import PacMan.okna.oknoHry;
 
 import java.awt.*;
 

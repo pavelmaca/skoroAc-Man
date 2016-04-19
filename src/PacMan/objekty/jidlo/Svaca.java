@@ -1,4 +1,4 @@
-package objekty.jidlo;
+package PacMan.objekty.jidlo;
 
 import java.awt.*;
 public class Svaca {

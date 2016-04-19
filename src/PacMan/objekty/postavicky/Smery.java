@@ -1,4 +1,4 @@
-package objekty.postavicky;
+package PacMan.objekty.postavicky;
 
 /**
  * Created by Admin on 4.4.2016.
