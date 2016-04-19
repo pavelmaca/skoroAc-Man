@@ -8,7 +8,7 @@ import PacMan.okna.Hra;
  */
 import java.util.Random;
 public class Potvurkaa{
-    private Hra vokno;
+
     protected int [][] parametryPotvurek;
     Color barva = Color.ORANGE;
     int x;
@@ -69,8 +69,8 @@ public class Potvurkaa{
             return true;
         }
         for (int j = 0; j < parametryPotvurek.length; j++) {
-            for (int i = 0; i < vokno.getAktualniUroven().pocetPrekazek(); i++) {
-                if (new Rectangle(x - 1, y - 1, velikost + 2, velikost + 2).intersects(vokno.getAktualniUroven().getOkraje(i))) {
+            for (int i = 0; i < vokno.getEngine().pocetPrekazek(); i++) {
+                if (new Rectangle(x - 1, y - 1, velikost + 2, velikost + 2).intersects(vokno.getEngine().getOkraje(i))) {
                     return true;
                 }
             }

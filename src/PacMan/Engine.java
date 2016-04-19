@@ -1,8 +1,11 @@
 package PacMan;
 
+import PacMan.objekty.Prekazka;
 import PacMan.objekty.jidlo.Svaca;
 import PacMan.objekty.postavicky.Hrac;
 import PacMan.objekty.postavicky.Potvurkaa;
+import PacMan.urovne.Urovene;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -11,33 +14,50 @@ import java.util.ArrayList;
  * For example Pac-Man's pills, power pill(if power pill exist), walls, ghosts & player's figure.
  */
 public class Engine {
-    protected int[][] parametryPrekazek;
-    protected Color barvaVnitrkuPrekazek;
-    protected Color barvaOkrajePrekazek;
+    private int zivoty = 3;
+    protected Prekazka[] prekazky;
     protected Hrac hrac;
+    protected Potvurkaa[] potvurky;
+    protected ArrayList<Svaca> jidlo = new ArrayList<Svaca>();
+
     protected int score = 0;
 
-    public ArrayList<Svaca> jidlo = new ArrayList<Svaca>();
-
-    protected Potvurkaa[] potvurka;
-
-    public Engine() {
-
+    public Engine(){
+        nactiUroven(1);
     }
 
-    public int pocetPrekazek() {
-        return parametryPrekazek.length;
-    }
-    public void kontrolaSnedeniJidla(){
-        for (int i = 0; i < jidlo.size() ; i++) {
-            Rectangle okrajeJidla = jidlo.get(i).getOkraje();
-            if (hrac.getOkraje().intersects(okrajeJidla)) {
-                score++;
-                jidlo.remove(i);
-            }
-        }
+    protected void nactiUroven(int cisloUrovene) {
+        Uroven aktualni = Urovne.get(cisloUrovene);
+
+        prekazky = aktualni.getPrekazky();
+        hrac = aktualni.getHrac();
+        potvurky = aktualni.getPotvurky();
+        jidlo = aktualni.getSvaca();
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public ArrayList<Svaca> getJidlo() {
+        return jidlo;
+    }
+
+    public Potvurkaa[] getPotvurky() {
+        return potvurky;
+    }
+
+    public Hrac getHrac() {
+        return hrac;
+    }
+
+    public Prekazka[] getPrekazky() {
+        return prekazky;
+    }
+
+    public int getZivoty() {
+        return zivoty;
+    }
 
     /**
      * Method with paint walls.
@@ -53,6 +73,7 @@ public class Engine {
             g.drawRect(parametryPrekazky[0], parametryPrekazky[1], parametryPrekazky[2], parametryPrekazky[3]);
         }
     }
+
     /**
      * Method witch create a pills. It works like an array list.
      */
@@ -62,13 +83,13 @@ public class Engine {
             int y = 30 * (i / 10) + 25;
             boolean kolize = false;
             Svaca p = new Svaca(x, y);
-            for (int j = 0; j < parametryPrekazek.length ; j++) {
-                if (p.getOkraje().intersects(getOkraje(j))){
+            for (int j = 0; j < parametryPrekazek.length; j++) {
+                if (p.getOkraje().intersects(getOkraje(j))) {
                     kolize = true;
                 }
 
             }
-            if(kolize == false) {
+            if (kolize == false) {
                 jidlo.add(p);
             }
         }
@@ -81,7 +102,6 @@ public class Engine {
      */
     public void vykresliUroven(Graphics g) {
         vykresliPrekazky(g);
-        vykresliJidlo(g);
         //vykresliPostavicky(g);
     }
 
@@ -90,13 +110,6 @@ public class Engine {
      *
      * @param g
      */
-    private void vykresliJidlo(Graphics g) {
-        for (int i = 0; i < jidlo.size(); i++) {
-            if (jidlo.get(i).isViditelny()) {
-                jidlo.get(i).vykresliSeSvaca(g);
-            }
-        }
-    }
 /*
     private void vykresliPostavicky(Graphics g) {
         g.setColor(Color.ORANGE);
@@ -106,6 +119,7 @@ public class Engine {
         }
     }
 */
+
     /**
      * Method witch gets space for every wall.
      *
@@ -116,9 +130,9 @@ public class Engine {
         return new Rectangle((parametryPrekazek[i][0]), (parametryPrekazek[i][1]), (parametryPrekazek[i][2]), (parametryPrekazek[i][3]));
     }
 /**
-    public Rectangle getOkrajePotvurky(int i) {
-        return new Rectangle(parametryPotvurek[i][0], parametryPotvurek[i][1], parametryPotvurek[i][2], parametryPotvurek[i][3]);
-    }
+ public Rectangle getOkrajePotvurky(int i) {
+ return new Rectangle(parametryPotvurek[i][0], parametryPotvurek[i][1], parametryPotvurek[i][2], parametryPotvurek[i][3]);
+ }
  */
 }
 

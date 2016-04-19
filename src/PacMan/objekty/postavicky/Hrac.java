@@ -1,7 +1,7 @@
 package PacMan.objekty.postavicky;
 
 import PacMan.okna.Hra;
-import PacMan.Engine;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,7 +12,6 @@ public class Hrac implements KeyListener{
     private final int sirkaKruhu = 15;
     public int x, y, smerX, smerY, zivoty, rychlostHrace;
     private Hra vokno;
-    private Engine aktualniUroven;
     private boolean poh = true;
     public Hrac(Hra vokno){
         //this.vokno = new PacMan.okna.Hra();
@@ -45,8 +44,8 @@ public class Hrac implements KeyListener{
         if(x < 0 || y < 0){
             return true;
         }
-            for (int i = 0; i < vokno.getAktualniUroven().pocetPrekazek(); i++) {
-                if (new Rectangle(x - 1, y - 1, sirkaKruhu + 2, vyskaKruhu + 2).intersects(vokno.getAktualniUroven().getOkraje(i))) {
+            for (int i = 0; i < vokno.getEngine().pocetPrekazek(); i++) {
+                if (new Rectangle(x - 1, y - 1, sirkaKruhu + 2, vyskaKruhu + 2).intersects(vokno.getEngine().getOkraje(i))) {
                     return true;
                 }
             }

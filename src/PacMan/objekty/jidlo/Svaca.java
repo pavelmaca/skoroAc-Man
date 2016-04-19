@@ -9,7 +9,7 @@ public class Svaca {
         this.x = x;
         this.y = y;
     }
-    public void vykresliSeSvaca(Graphics g){
+    public void vykresliSe(Graphics g){
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(x, y, DELKASTRANY, DELKASTRANY);
 
