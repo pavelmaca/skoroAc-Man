@@ -1,6 +1,6 @@
 package PacMan.objekty.jidlo;
 
-import PacMan.okna.oknoHry;
+import PacMan.okna.Hra;
 
 import java.awt.*;
 
@@ -11,8 +11,8 @@ public class SuperJidlo {
     private int souradniceX, souradniceY, cislo;
     private final int velikost = 10;
     private boolean viditelny = true;
-    private oknoHry vokno;
-    public SuperJidlo(oknoHry oknoHry){
+    private Hra vokno;
+    public SuperJidlo(Hra oknoHry){
 
     }
     public void vykresleniSuperJidla(Graphics g){

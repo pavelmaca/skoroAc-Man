@@ -1,13 +1,14 @@
 package PacMan.objekty.postavicky;
 
 import java.awt.*;
-import PacMan.okna.oknoHry;
+
+import PacMan.okna.Hra;
 /**
  * Created by Admin on 4.4.2016.
  */
 import java.util.Random;
 public class Potvurkaa{
-    private oknoHry vokno;
+    private Hra vokno;
     protected int [][] parametryPotvurek;
     Color barva = Color.ORANGE;
     int x;

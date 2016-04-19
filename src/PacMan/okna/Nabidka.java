@@ -1,5 +1,6 @@
 package PacMan.okna;
-import PacMan.Spusteni;
+
+import PacMan.Grafika;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,46 +10,33 @@ import javax.swing.*;
 /**
  * Created by Admin on 24.3.2016.
  */
-public class Nabidka extends JPanel implements ActionListener{
-    private Spusteni program;
-    private Object g;
-    public Nabidka(Spusteni program){
+public class Nabidka extends JPanel implements ActionListener {
+    private Grafika okno;
+    final private String TLACITKO_SPUSTIT = "Spustit";
+    final private String TLACITKO_VYPNOUT = "Vypnout";
+
+    public Nabidka(Grafika okno) {
         setBackground(Color.BLUE);
-        Button start = new Button("Spustit");
-        Button nejlepsich10 = new Button("Nejlepších 10");
-        //Button pribeh = new Button("Příběh");
-        //Button  navod = new Button("Návod");
-        //Button tvurce = new Button("Tvůrce");
-        Button vypnout = new Button("Vypnout");
+        Button start = new Button(TLACITKO_SPUSTIT);
+        //Button nejlepsich10 = new Button("Nejlepších 10");
+        Button vypnout = new Button(TLACITKO_VYPNOUT);
         add(start);
-        add(nejlepsich10);
-        //add(pribeh);
-        //add(navod);
-        //add(tvurce);
+        //add(nejlepsich10);
         add(vypnout);
         start.addActionListener(this);
         vypnout.addActionListener(this);
-        this.program = program;
+        this.okno = okno;
     }
 
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         String pri = ae.getActionCommand();
-        if (pri.equals("Spustit")) {
-            program.otevriLevel1();
+        if (pri.equals(TLACITKO_SPUSTIT)) {
+            okno.otevriHru();
         }
-        if (pri.equals("Příběh")) {
-
-        }
-        if (pri.equals("Návod")) {
-
-        }
-        if (pri.equals("Tvůrce")) {
-
-        }
-        if(pri.equals("Vypnout")){
-            program.dispose();
+        if (pri.equals(TLACITKO_VYPNOUT)) {
+            okno.dispose();
         }
     }
 }

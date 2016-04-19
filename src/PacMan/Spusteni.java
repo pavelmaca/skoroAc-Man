@@ -1,43 +1,11 @@
 package PacMan;
 
-import PacMan.okna.Nabidka;
-import PacMan.okna.oknoHry;
-
-import javax.swing.*;
-import java.awt.*;
-public class Spusteni extends JFrame {
-    public int poustec;
-    public Nabidka nabidka;
-    public oknoHry hra = new oknoHry(this);
-    public Spusteni(){
-        setTitle("Hra_Semestrální_Projekt");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(300, 500));
-        //add(vokno);
-        //remove(vokno);
-        //add(PacMan.okna);
-        setResizable(false);
-        pack();
-        return;
-    }
+/**
+ * Created by Admin on 19.4.2016.
+ */
+public class Spusteni {
     public static void main(String[] args) {
-        Spusteni program = new Spusteni();
+        Grafika program = new Grafika();
         program.otevriNabidku();
-        //program.otevriLevel1();
-    }
-    private void otevriNabidku(){
-        nabidka = new Nabidka(this);
-        //add(PacMan.okna);
-        //PacMan.okna.setVisible(false);
-        add(nabidka);
-        pack();
-        this.setVisible(true);
-    }
-    public void otevriLevel1(){
-        nabidka.setVisible(false);
-        add(hra);
-        pack();
-        hra.requestFocus();
-        this.setVisible(true);
     }
 }

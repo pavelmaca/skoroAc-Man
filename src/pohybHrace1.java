@@ -7,8 +7,8 @@ public class pohybHrace1 {
     private int y;
     private final int vyskaKruhu = 15;
     private final int sirkaKruhu = 15;
-    private PacMan.okna.oknoHry vokno;
-    public pohybHrace1(PacMan.okna.oknoHry PacMan.okna.oknoHry){
+    private PacMan.okna.Hra vokno;
+    public pohybHrace1(PacMan.okna.Hra PacMan.okna.Hra){
     this.vokno = vokno;
     }
 

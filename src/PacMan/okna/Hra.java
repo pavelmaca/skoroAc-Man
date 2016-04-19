@@ -1,6 +1,6 @@
 package PacMan.okna;
 
-import PacMan.Spusteni;
+import PacMan.Grafika;
 import PacMan.objekty.jidlo.Svaca;
 import PacMan.objekty.postavicky.Potvurka;
 import PacMan.objekty.postavicky.Potvurka2;
@@ -21,7 +21,7 @@ import javax.swing.Timer;
 /**
  * Author: Štěpán Mudra.
  */
-public class oknoHry extends JPanel {
+public class Hra extends JPanel {
     private int zivoty = 3;
     private Hrac Hrac;
     private int  POCET_CTVERCU = 150;
@@ -44,10 +44,10 @@ public class oknoHry extends JPanel {
     int tickindex=0;
     int ticksum=0;
     int ticklist[] = new int[100];
-    public Spusteni program;
+    public Grafika program;
     private String nazev;
     //public PocitadloFPS pocitadloFPS;
-    public oknoHry(Spusteni hrac){
+    public Hra(){
         uroven = 1;
         PoslouchaniCasovace publikum = new PoslouchaniCasovace();
         Timer casovac = new Timer(10, publikum);

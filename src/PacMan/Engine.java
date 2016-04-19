@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * This abstract class includes all of thinks witch have all class in share.
  * For example Pac-Man's pills, power pill(if power pill exist), walls, ghosts & player's figure.
  */
-abstract public class Engine {
+public class Engine {
     protected int[][] parametryPrekazek;
     protected Color barvaVnitrkuPrekazek;
     protected Color barvaOkrajePrekazek;
