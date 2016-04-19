@@ -4,7 +4,8 @@ import jidlo.Svaca;
 import postavicky.Potvurka;
 import postavicky.Potvurka2;
 import postavicky.Potvurka3;
-import urovne.Uroven;
+import postavicky.Potvurkaa;
+import urovne.Engine;
 import urovne.Uroven1;
 import urovne.Uroven2;
 import postavicky.Hrac;
@@ -17,7 +18,7 @@ import javax.swing.*;
 import javax.swing.Timer;
 
 /**
- * Author: Koule7b.
+ * Author: Štěpán Mudra.
  */
 public class oknoHry extends JPanel {
     private int zivoty = 3;
@@ -32,23 +33,27 @@ public class oknoHry extends JPanel {
     private Potvurka potvurka;
     private Potvurka2 potvurka2;
     private Potvurka3 potvurka3;
-    private Uroven aktualniUroven;
+    private Potvurkaa potvurkaa;
+    private Engine aktualniUroven;
     private SuperJidlo superjidlo;
-    private int uroven = 2;
+    //private Hrac hrac;
+    private int uroven;
     private double fps;
     private double lastTime;
     int tickindex=0;
     int ticksum=0;
     int ticklist[] = new int[100];
     public Spusteni program;
+    private String nazev;
     //public PocitadloFPS pocitadloFPS;
     public oknoHry(Spusteni hrac){
+        uroven = 1;
         PoslouchaniCasovace publikum = new PoslouchaniCasovace();
         Timer casovac = new Timer(10, publikum);
         casovac.start();
-        pusteniLevel1(uroven, POCET_KONTROLNICH_CTVERCU, vyhrals, score, zivoty);
+        pusteniLevel1(uroven, vyhrals, score, zivoty);
     }
-    private void pusteniLevel1(int uroven,int POCET_KONTROLNICH_CTVERCU,boolean vyhrals, int score, int zivoty){
+    private void pusteniLevel1(int uroven,boolean vyhrals, int score, int zivoty){
         this.poleCtvercu = new Svaca[POCET_CTVERCU];
         this.Hrac = new Hrac(this);
         this.potvurka = new Potvurka();
@@ -67,18 +72,18 @@ public class oknoHry extends JPanel {
             this.aktualniUroven = new Uroven2();
         }
         this.setFocusable(true);
-        int y = 25;
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         pocetZivotu(g);
         vypisScore(g);
-        g.drawString("Koule7b ", 5, 15);
+        g.drawString("Štěpán ", 5, 15);
         if(vyhrals){
             this.setBackground(Color.BLUE);
             vypisVyhru(g);
-            uroven++;
-            aktualniUroven.vykresliUroven(g);
+            return;
+            //uroven++;
+            //aktualniUroven.vykresliUroven(g);
         }
         aktualniUroven.vykresliUroven(g);
         if(zivoty <= 0){
@@ -119,6 +124,7 @@ public class oknoHry extends JPanel {
         private int pomoc;
         @Override
         public void actionPerformed(ActionEvent e){
+            pomoc++;
             if(vyhrals){
                 return;
             }
@@ -127,45 +133,28 @@ public class oknoHry extends JPanel {
             Rectangle superJidlo = getOkraje();
             if (okrajePozorKolize.intersects(superJidlo)){
                 if(isViditelny()) {
-                    score = score * 2;
+                    score *= 2;
                     skryt();
                 }
             }
             cas = pomoc/100;
-            int i = 0;
-            for(; i < POCET_CTVERCU;i++) {
+            for (int i = 0; i < aktualniUroven.jidlo.size() ; i++) {
                 Rectangle okrajeJidla = aktualniUroven.jidlo.get(i).getOkraje();
-                    for (int j = 0; j < aktualniUroven.pocetPrekazek(); j++) {
-                        Rectangle prekazka = aktualniUroven.getOkraje(j);
-                        if (prekazka.intersects(okrajeJidla)) {
-                            if(aktualniUroven.jidlo.get(i).isViditelny()) {
-                                POCET_KONTROLNICH_CTVERCU--;
-                            }
-                            aktualniUroven.jidlo.get(i).skryt();
-                            //System.out.println(POCET_KONTROLNICH_CTVERCU);
-                        }
-                    }
-                    Svaca prek = aktualniUroven.jidlo.get(i);
-                    Rectangle okrajePrekazky = aktualniUroven.jidlo.get(i).getOkraje();
-                    if (okrajePozorKolize.intersects(okrajePrekazky)) {
-                        if(aktualniUroven.jidlo.get(i).isViditelny()){
-                            aktualniUroven.jidlo.get(i).skryt();
-                            score++;
-                            POCET_KONTROLNICH_CTVERCU--;
-                        }
-                    }
+                if (Hrac.getOkraje().intersects(okrajeJidla)) {
+                    score++;
+                    aktualniUroven.jidlo.remove(i);
+                }
             }
-            if(POCET_KONTROLNICH_CTVERCU == 0){
-                vyhrals = true;
+            if(aktualniUroven.jidlo.size() == 0){
                 score = score + zivoty * 30;
                 uroven++;
-                POCET_KONTROLNICH_CTVERCU = 150;
-                vyhrals = false;
                 if(uroven == 3){
+                    Hrac.smerX = 0;
+                    Hrac.smerY = 0;
                     vyhrals = true;
+                }else {
+                    pusteniLevel1(uroven, vyhrals, score, zivoty);
                 }
-                pusteniLevel1(uroven, POCET_KONTROLNICH_CTVERCU, vyhrals, score, zivoty);
-                return;
             }
             if(uroven == 1) {
                 if (okrajePozorKolize.intersects(potvurka.getOkrajePP1())) {
@@ -182,6 +171,9 @@ public class oknoHry extends JPanel {
                 }
                 potvurka.polohaPotvurky();
                 potvurka2.polohaPotvurky();
+            }
+            if(uroven == 2){
+                //potvurkaa.pohybPotvurky();
             }
             //pocitadloFPS.fps();;
             Hrac.move();
@@ -228,7 +220,7 @@ public class oknoHry extends JPanel {
     private Rectangle getOkraje(){
         return new Rectangle(130, 200, 10, 10);
     }
-    public Uroven getAktualniUroven(){
+    public Engine getAktualniUroven(){
         return aktualniUroven;
     }
 

@@ -1,9 +1,9 @@
-import urovne.Uroven;
+import urovne.Engine;
 
 /**
  * Created by Admin on 8.4.2016.
  */
-public class PotvurkyUroven2 extends Uroven{
+public class PotvurkyUroven2 extends Engine {
     public PotvurkyUroven2(){
         //parametryPotvurek = new int[]{
                 //{15, 15,}

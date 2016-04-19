@@ -7,14 +7,14 @@ public class Spusteni extends JFrame {
     public Nabidka nabidka;
     public oknoHry hra = new oknoHry(this);
     public Spusteni(){
-        setTitle("Žravá_koule");
+        setTitle("Hra_Semestrální_Projekt");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(300, 500));
         //add(vokno);
         //remove(vokno);
         //add(hra);
         setResizable(false);
-        //pack();
+        pack();
         return;
     }
     public static void main(String[] args) {

@@ -1,7 +1,5 @@
 package postavicky;
 
-import javafx.geometry.Pos;
-
 import java.awt.*;
 import hra.oknoHry;
 /**
@@ -32,6 +30,7 @@ public class Potvurkaa{
         }
     }
     public void pohybPotvurky(){
+        smerX = -rychlost;
         if(!kontrolaKolize(x+smerX, y+smerY)){
             x += smerX;
             y += smerY;

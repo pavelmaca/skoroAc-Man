@@ -5,8 +5,9 @@ import java.awt.*;
 /**
  * Created by Admin on 4.4.2016.
  */
-public class Uroven1 extends Uroven {
+public class Uroven1 extends Engine {
     public Uroven1(){
+        super();
         parametryPrekazek = new int[][]{
                 {50, 40, 70, 210},
                 {150, 40, 100, 90},
@@ -15,9 +16,9 @@ public class Uroven1 extends Uroven {
                 {50, 370, 95, 60},
                 {180, 370, 70, 60}
         };
-        barvaVnitrku = Color.DARK_GRAY;
-        barvaOkraje = Color.YELLOW;
-
+        barvaVnitrkuPrekazek = Color.DARK_GRAY;
+        barvaOkrajePrekazek = Color.YELLOW;
+        vytvoreniJidla();
     }
     public void vykresliSuperJidlo(Graphics g){
         g.setColor(Color.BLUE);

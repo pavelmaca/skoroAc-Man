@@ -1,7 +1,7 @@
 package postavicky;
 
 import hra.oknoHry;
-import urovne.Uroven;
+import urovne.Engine;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,7 +12,7 @@ public class Hrac implements KeyListener{
     private final int sirkaKruhu = 15;
     public int x, y, smerX, smerY, zivoty, rychlostHrace;
     private oknoHry vokno;
-    private Uroven aktualniUroven;
+    private Engine aktualniUroven;
     private boolean poh = true;
     public Hrac(oknoHry vokno){
         //this.vokno = new hra.oknoHry();
