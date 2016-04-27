@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Grafika extends JFrame {
-    public Nabidka nabidka;
-    public Hra hra;
+    private Nabidka nabidka;
+    private Hra hra;
 
     public Grafika() {
         setTitle("Hra_Semestrální_Projekt");
