@@ -13,8 +13,9 @@ public class Potvurka {
         pp1 = 150;
         pp2 = 346;
         rychlostP1 = 2;
-        polohaPotvurky();
+        //polohaPotvurky();
     }
+    /**
     public void polohaPotvurky(){
         this.smerr = smerr;
         pp1 += smerX;
@@ -26,9 +27,10 @@ public class Potvurka {
             rychlostP1 = - 2;
         }
     }
+     */
     public void kresleniPotvurky1(Graphics g){
         g.setColor(Color.ORANGE);
-        g.fillRect(pp1, pp2, 20, 20);
+        g.fillRect(150, 346, 20, 20);
     }
     public Rectangle getOkrajePP1(){
         return new Rectangle(pp1, pp2, 20, 20);

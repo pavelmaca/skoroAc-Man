@@ -1,7 +1,8 @@
-package PacMan.urovne;
+package PacMan.sluzby;
 
 import PacMan.Engine;
 import PacMan.objekty.postavicky.Smery;
+import PacMan.urovne.Uroven;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * Created by Admin on 4.4.2016.
  */
 public class VystavenyLevelu {
-    ArrayList<Uroven> sezanam = new ArrayList<>();
+    public ArrayList<Uroven> sezanam = new ArrayList<>();
 
     public VystavenyLevelu() {
         vytvorUroven1();
@@ -20,7 +21,7 @@ public class VystavenyLevelu {
         return sezanam.get(uroven);
     }
 
-    public void vytvorUroven1() {
+    private void vytvorUroven1() {
         Uroven lvl = new Uroven(Color.darkGray, Color.yellow);
 
         lvl.addPrekazka(50, 40, 70, 210);
@@ -31,9 +32,11 @@ public class VystavenyLevelu {
         lvl.addPrekazka(180, 370, 70, 60);
 
 
-        lvl.addPotvurka(0, 0, 10, Smery.dolu);
+        //lvl.addPotvurka(0, 0, Smery.dolu);
+        lvl.vytvoreniJidla();
+        sezanam.add(lvl);
+        sezanam.set(0, lvl);
 
-        sezanam.set(1, lvl);
     }
 
     protected void vytvorUroven2() {
@@ -58,4 +61,8 @@ public class VystavenyLevelu {
     vytvoreniJidla();
     barvaVnitrkuPrekazek = Color.RED;*/
     }
+    public Rectangle getOkraje(int i){
+        return new Rectangle();
+    }
+
 }

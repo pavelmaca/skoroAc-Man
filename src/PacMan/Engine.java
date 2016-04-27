@@ -4,9 +4,11 @@ import PacMan.objekty.Prekazka;
 import PacMan.objekty.jidlo.Svaca;
 import PacMan.objekty.postavicky.Hrac;
 import PacMan.objekty.postavicky.Potvurkaa;
-import PacMan.urovne.Urovene;
+import PacMan.objekty.postavicky.Smery;
+import PacMan.sluzby.Movinator3000;
+import PacMan.sluzby.VystavenyLevelu;
+import PacMan.urovne.Uroven;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -15,48 +17,54 @@ import java.util.ArrayList;
  */
 public class Engine {
     private int zivoty = 3;
-    protected Prekazka[] prekazky;
-    protected Hrac hrac;
-    protected Potvurkaa[] potvurky;
-    protected ArrayList<Svaca> jidlo = new ArrayList<Svaca>();
-
     protected int score = 0;
+    protected Uroven aktualni;
+    protected Movinator3000 movinator3000;
 
-    public Engine(){
-        nactiUroven(1);
+    protected VystavenyLevelu tvorbaUrovne = new VystavenyLevelu();
+    public int uroven = 0;
+
+    public Engine() {
+        //hrac = new Hrac();
+        nactiUroven(uroven);
     }
 
     protected void nactiUroven(int cisloUrovene) {
-        Uroven aktualni = Urovne.get(cisloUrovene);
 
-        prekazky = aktualni.getPrekazky();
-        hrac = aktualni.getHrac();
-        potvurky = aktualni.getPotvurky();
-        jidlo = aktualni.getSvaca();
+        aktualni = tvorbaUrovne.get(cisloUrovene);
+        movinator3000 = new Movinator3000(300, 500, aktualni);
     }
 
     public int getScore() {
         return score;
     }
 
-    public ArrayList<Svaca> getJidlo() {
-        return jidlo;
+    public ArrayList<Svaca> getSvaca() {
+        return aktualni.getSvaca();
     }
 
-    public Potvurkaa[] getPotvurky() {
-        return potvurky;
+    public ArrayList<Potvurkaa> getPotvurky() {
+        return aktualni.getPotvurky();
     }
 
     public Hrac getHrac() {
-        return hrac;
+        return aktualni.getHrac();
     }
 
-    public Prekazka[] getPrekazky() {
-        return prekazky;
+    public ArrayList<Prekazka> getPrekazky() {
+        return aktualni.getPrekazky();
     }
 
     public int getZivoty() {
         return zivoty;
+    }
+
+    public boolean hracVyhral() {
+        return aktualni.getSvaca().size() == 0;
+    }
+
+    public void zmenSmer(Smery smer){
+       // getHrac().
     }
 
     /**
@@ -64,7 +72,7 @@ public class Engine {
      *
      * @param g
      */
-    private void vykresliPrekazky(Graphics g) {
+/*    private void vykresliPrekazky(Graphics g) {
         for (int i = 0; i < parametryPrekazek.length; i++) {
             int[] parametryPrekazky = parametryPrekazek[i];
             g.setColor(barvaVnitrkuPrekazek);
@@ -74,37 +82,17 @@ public class Engine {
         }
     }
 
-    /**
-     * Method witch create a pills. It works like an array list.
-     */
-    protected void vytvoreniJidla() {
-        for (int i = 0; i < 150; i++) {
-            int x = 25 * (i % 10) + 35;
-            int y = 30 * (i / 10) + 25;
-            boolean kolize = false;
-            Svaca p = new Svaca(x, y);
-            for (int j = 0; j < parametryPrekazek.length; j++) {
-                if (p.getOkraje().intersects(getOkraje(j))) {
-                    kolize = true;
-                }
-
-            }
-            if (kolize == false) {
-                jidlo.add(p);
-            }
-        }
-    }
-
+*/
     /**
      * Method paints actual level. Here the picture of level gets together from smaller parts.
      *
      * @param g
      */
-    public void vykresliUroven(Graphics g) {
+  /*  public void vykresliUroven(Graphics g) {
         vykresliPrekazky(g);
         //vykresliPostavicky(g);
     }
-
+*/
     /**
      * Method, witch draws pills.
      *
@@ -120,15 +108,7 @@ public class Engine {
     }
 */
 
-    /**
-     * Method witch gets space for every wall.
-     *
-     * @param i index of wall
-     * @return Rectangle
-     */
-    public Rectangle getOkraje(int i) {
-        return new Rectangle((parametryPrekazek[i][0]), (parametryPrekazek[i][1]), (parametryPrekazek[i][2]), (parametryPrekazek[i][3]));
-    }
+
 /**
  public Rectangle getOkrajePotvurky(int i) {
  return new Rectangle(parametryPotvurek[i][0], parametryPotvurek[i][1], parametryPotvurek[i][2], parametryPotvurek[i][3]);
