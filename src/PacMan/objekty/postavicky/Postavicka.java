@@ -35,9 +35,19 @@ abstract public class Postavicka {
         if (smer == Smery.dolu) {
             pozice[1] = y + rychlost;
         }
-
-        /// TODO ostatní směry
+        if(smer == Smery.nahoru){
+            pozice[1] = y - rychlost;
+        }
+        if(smer == Smery.levo){
+            pozice[0] = x - rychlost;
+        }
+        if(smer == Smery.pravo){
+            pozice[0] = x + rychlost;
+        }
         return pozice;
+    }
+    public void setSmer(Smery smer){
+        this.smer = smer;
     }
 }
 

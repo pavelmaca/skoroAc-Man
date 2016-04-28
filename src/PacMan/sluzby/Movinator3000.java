@@ -19,14 +19,13 @@ public class Movinator3000 {
 
     protected Uroven uroven;
 
-    public Movinator3000(int maxSirka, int maxVyska, Uroven uroven) {
+    public Movinator3000(int maxSirka, int maxVyska) {
         this.maxSirka = maxSirka;
         this.maxVyska = maxVyska;
-        this.uroven = uroven;
     }
 
 
-   /*
+
 
     public boolean kontrolaKolize(int x, int y) {
         //this.x = x;
@@ -40,14 +39,14 @@ public class Movinator3000 {
         } else if (x < 0 || y < 0) {
             return true;
         } else {
-            for (int i = 0; i < prekazky.size(); i++) {
+            for (int i = 0; i < uroven.getPrekazky().size(); i++) {
                 if (new Rectangle(x - 1, y - 1, uroven.getHrac().velikost + 2, uroven.getHrac().velikost + 2).intersects(uroven.getPrekazky().get(i).getOkraje())) {
                     return true;
                 }
             }
             return false;
         }
-    }*/
+    }
     /**
      public void kontrolaSnedeniJidla(){
      for (int i = 0; i < jidlo.size() ; i++) {

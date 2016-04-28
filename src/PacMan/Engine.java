@@ -32,7 +32,7 @@ public class Engine {
     protected void nactiUroven(int cisloUrovene) {
 
         aktualni = tvorbaUrovne.get(cisloUrovene);
-        movinator3000 = new Movinator3000(300, 500, aktualni);
+        movinator3000 = new Movinator3000(300, 500);
     }
 
     public int getScore() {
@@ -64,7 +64,7 @@ public class Engine {
     }
 
     public void zmenSmer(Smery smer){
-       // getHrac().
+       aktualni.getHrac().setSmer(smer);
     }
 
     /**
