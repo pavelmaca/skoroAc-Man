@@ -18,7 +18,7 @@ public class Potvurkaa  extends Postavicka{
         super(x, y, smer);
     }
 
-    public void vykresliSe(Graphics g, int x, int y){
+    public void vykresliSe(Graphics g){
         g.setColor(barva);
         g.fillRect(x, y, velikost, velikost);
     }

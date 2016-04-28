@@ -32,7 +32,8 @@ public class VystavenyLevelu {
         lvl.addPrekazka(180, 370, 70, 60);
 
 
-        //lvl.addPotvurka(0, 0, Smery.dolu);
+        lvl.addPotvurka(5, 5, Smery.dolu);
+        lvl.addPotvurka(130, 230, Smery.pravo);
         lvl.vytvoreniJidla();
         sezanam.add(lvl);
         sezanam.set(0, lvl);
