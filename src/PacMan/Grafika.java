@@ -13,7 +13,6 @@ public class Grafika extends JFrame {
     public Grafika() {
         setTitle("Hra_Semestrální_Projekt");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(300, 500));
         setResizable(false);
         pack();
         return;

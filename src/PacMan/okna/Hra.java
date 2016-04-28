@@ -6,6 +6,7 @@ import PacMan.objekty.jidlo.Svaca;
 import PacMan.objekty.postavicky.*;
 import PacMan.Engine;
 import PacMan.urovne.Uroven;
+import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.awt.*;
 import java.awt.Graphics;
@@ -26,12 +27,14 @@ public class Hra extends JPanel {
 
 
     public Hra() {
+        int sirka = 300;
+        int vyska = 500;
         PoslouchaniCasovace publikum = new PoslouchaniCasovace();
         casovac = new Timer(10, publikum);
         casovac.start();
-        this.setPreferredSize(new Dimension(300, 500));
+        this.setPreferredSize(new Dimension(sirka, vyska));
         setBackground(Color.RED);
-        this.engine = new Engine();
+        this.engine = new Engine(sirka, vyska);
         /* TODO změna barvy pozadí při vyším levelu
         if (engine.getUroven() == 1) {
             this.setBackground(Color.RED);
@@ -129,7 +132,13 @@ public class Hra extends JPanel {
     private class PoslouchaniCasovace implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-     //       engine.skok();
+            engine.skok();
+            /**
+            if(engine.jeKonecHry()){
+                System.out.println("Gamee over");
+            }
+             */
+
             repaint();
         }
     }

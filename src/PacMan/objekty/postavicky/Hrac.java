@@ -8,11 +8,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Hrac extends Postavicka {
-    public final int velikost = 15;
     private Color barva = Color.WHITE;
 
     public Hrac() {
-        super(130, 230, Smery.dolu);
+        super(130, 230, Smery.stop);
     }
 
     public void vykresliSe(Graphics g) {

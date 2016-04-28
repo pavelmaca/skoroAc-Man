@@ -13,7 +13,6 @@ public class Potvurkaa  extends Postavicka{
     Color barva = Color.ORANGE;
 
 
-    public int velikost = 20;
 
     public Potvurkaa(int x, int y, Smery smer) {
         super(x, y, smer);

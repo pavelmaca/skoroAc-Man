@@ -20,19 +20,23 @@ public class Engine {
     protected int score = 0;
     protected Uroven aktualni;
     protected Movinator3000 movinator3000;
+    private int velikostSirka;
+    private int velikostVyska;
 
     protected VystavenyLevelu tvorbaUrovne = new VystavenyLevelu();
     public int uroven = 0;
 
-    public Engine() {
+    public Engine(int velikostSirka, int velikostVyska) {
         //hrac = new Hrac();
+        this.velikostSirka = velikostSirka;
+        this.velikostVyska = velikostVyska;
         nactiUroven(uroven);
     }
 
     protected void nactiUroven(int cisloUrovene) {
 
         aktualni = tvorbaUrovne.get(cisloUrovene);
-        movinator3000 = new Movinator3000(300, 500);
+        movinator3000 = new Movinator3000(velikostSirka, velikostVyska, aktualni);
     }
 
     public int getScore() {
@@ -65,6 +69,10 @@ public class Engine {
 
     public void zmenSmer(Smery smer){
        aktualni.getHrac().setSmer(smer);
+    }
+    public void skok(){
+        movinator3000.pohniVsim();
+
     }
 
     /**

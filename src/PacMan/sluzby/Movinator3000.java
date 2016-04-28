@@ -19,33 +19,45 @@ public class Movinator3000 {
 
     protected Uroven uroven;
 
-    public Movinator3000(int maxSirka, int maxVyska) {
+    public Movinator3000(int maxSirka, int maxVyska, Uroven uroven) {
         this.maxSirka = maxSirka;
         this.maxVyska = maxVyska;
+        this.uroven = uroven;
+    }
+    public void pohniVsim(){
+        pohniHrace();
+    }
+    private void pohniHrace(){
+        int[] budouci = uroven.getHrac().budouciPozice();
+        if(!kontrolaKolizesOkrajemaHry(budouci[0], budouci[1], uroven.getHrac())) {
+            uroven.getHrac().pohyb();
+        }
+    }
+    private boolean kontrolaKolizesOkrajemaHry(int x, int y, Postavicka postavicka) {
+        if ((x >= maxSirka - postavicka.getVelikost())) {
+            return true;
+        } else if ((y >= maxVyska - postavicka.getVelikost())) {
+            return true;
+        } else if (x < 0 || y < 0) {
+            return true;
+        }
+        return false;
     }
 
 
 
 
-    public boolean kontrolaKolize(int x, int y) {
+    public boolean kontrolaKolizeHrace(int x, int y) {
         //this.x = x;
         //this.y = y;
         //this.hra = hra;
         //v okne zprava
-        if ((x >= 300 - (15 + 6))) {
-            return true;
-        } else if ((y >= 500 - (43))) {
-            return true;
-        } else if (x < 0 || y < 0) {
-            return true;
-        } else {
             for (int i = 0; i < uroven.getPrekazky().size(); i++) {
-                if (new Rectangle(x - 1, y - 1, uroven.getHrac().velikost + 2, uroven.getHrac().velikost + 2).intersects(uroven.getPrekazky().get(i).getOkraje())) {
+                if (new Rectangle(x - 1, y - 1, uroven.getHrac().getVelikost() + 2, uroven.getHrac().getVelikost() + 2).intersects(uroven.getPrekazky().get(i).getOkraje())) {
                     return true;
                 }
             }
             return false;
-        }
     }
     /**
      public void kontrolaSnedeniJidla(){

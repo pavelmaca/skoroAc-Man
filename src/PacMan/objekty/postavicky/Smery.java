@@ -7,6 +7,7 @@ public enum Smery {
     nahoru,
     dolu,
     levo,
-    pravo
+    pravo,
+    stop
 
 }

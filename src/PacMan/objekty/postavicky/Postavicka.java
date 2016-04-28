@@ -14,6 +14,7 @@ import java.awt.*;
 abstract public class Postavicka {
     protected int x;
     protected int y;
+    protected int velikost = 15;
 
     protected Smery smer;
     protected int rychlost = 1;
@@ -31,23 +32,28 @@ abstract public class Postavicka {
     }
 
     public int[] budouciPozice() {
-        int[] pozice = new int[2];
-        if (smer == Smery.dolu) {
-            pozice[1] = y + rychlost;
-        }
-        if(smer == Smery.nahoru){
-            pozice[1] = y - rychlost;
-        }
-        if(smer == Smery.levo){
-            pozice[0] = x - rychlost;
-        }
-        if(smer == Smery.pravo){
-            pozice[0] = x + rychlost;
+        int[] pozice = new int[] {x, y};
+        switch (smer) {
+            case dolu:
+                pozice[1] += rychlost;
+                break;
+            case nahoru:
+                pozice[1] -= rychlost;
+                break;
+            case levo:
+                pozice[0] -= rychlost;
+                break;
+            case pravo:
+                pozice[0] += rychlost;
+                break;
         }
         return pozice;
     }
     public void setSmer(Smery smer){
         this.smer = smer;
+    }
+    public int getVelikost(){
+        return velikost;
     }
 }
 
