@@ -2,6 +2,7 @@ package PacMan;
 
 import PacMan.objekty.Prekazka;
 import PacMan.objekty.jidlo.Svaca;
+import PacMan.objekty.mistaZmenySmeru.MistaZmenySmeru;
 import PacMan.objekty.postavicky.Hrac;
 import PacMan.objekty.postavicky.Potvurkaa;
 import PacMan.objekty.postavicky.Smery;
@@ -66,6 +67,8 @@ public class Engine {
     public boolean hracVyhral() {
         return aktualni.getSvaca().size() == 0;
     }
+
+    public ArrayList<MistaZmenySmeru> getMistaZmenySmeru(){return aktualni.getMistaZmenySmeru();}
 
     public void zmenSmer(Smery smer){
        aktualni.getHrac().setSmer(smer);

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by Admin on 4.4.2016.
  */
 public class VystavenyLevelu {
-    public ArrayList<Uroven> sezanam = new ArrayList<>();
+    private ArrayList<Uroven> sezanam = new ArrayList<>();
 
     public VystavenyLevelu() {
         vytvorUroven1();
@@ -24,16 +24,30 @@ public class VystavenyLevelu {
     private void vytvorUroven1() {
         Uroven lvl = new Uroven(Color.darkGray, Color.yellow);
 
-        lvl.addPrekazka(50, 40, 70, 210);
-        lvl.addPrekazka(150, 40, 100, 90);
-        lvl.addPrekazka(150, 160, 100, 90);
-        lvl.addPrekazka(50, 280, 200, 60);
-        lvl.addPrekazka(50, 370, 95, 60);
-        lvl.addPrekazka(180, 370, 70, 60);
+        lvl.addPrekazka(30, 40, 90, 210);
+        lvl.addPrekazka(150, 40, 120, 90);
+        lvl.addPrekazka(150, 160, 120, 90);
+        lvl.addPrekazka(30, 280, 240, 60);
+        lvl.addPrekazka(30, 370, 125, 60);
+        lvl.addPrekazka(180, 370, 90, 60);
 
 
         lvl.addPotvurka(5, 5, Smery.dolu);
-        lvl.addPotvurka(130, 230, Smery.pravo);
+        lvl.addPotvurka(285, 400, Smery.pravo);
+        lvl.addPotvurka(160, 370, Smery.levo);
+
+        lvl.addMistoZnemySmeru(9, 260, 15, 15);
+        lvl.addMistoZnemySmeru(9, 19, 15, 15);
+        lvl.addMistoZnemySmeru(130, 19, 15, 15);
+        lvl.addMistoZnemySmeru(280, 19, 15, 15);
+        lvl.addMistoZnemySmeru(130, 140, 15, 15);
+        lvl.addMistoZnemySmeru(280, 140, 15, 15);
+        lvl.addMistoZnemySmeru(280, 260, 15, 15);
+        lvl.addMistoZnemySmeru(280, 350, 15, 15);
+        lvl.addMistoZnemySmeru(9, 350, 15, 15);
+        lvl.addMistoZnemySmeru(130, 260, 15, 15);
+        lvl.addMistoZnemySmeru(160, 350, 15, 15);
+
         lvl.vytvoreniJidla();
         sezanam.add(lvl);
         sezanam.set(0, lvl);

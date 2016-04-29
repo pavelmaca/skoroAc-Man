@@ -3,6 +3,7 @@ package PacMan.okna;
 
 import PacMan.objekty.Prekazka;
 import PacMan.objekty.jidlo.Svaca;
+import PacMan.objekty.mistaZmenySmeru.MistaZmenySmeru;
 import PacMan.objekty.postavicky.*;
 import PacMan.Engine;
 import PacMan.urovne.Uroven;
@@ -104,6 +105,10 @@ public class Hra extends JPanel {
         ArrayList<Prekazka> prekazkay = engine.getPrekazky();
         for (int i = 0; i < prekazkay.size(); i++) {
             prekazkay.get(i).vykresliSe(g);
+        }
+        ArrayList<MistaZmenySmeru> mistaZmenySmeru = engine.getMistaZmenySmeru();
+        for (int i = 0; i < mistaZmenySmeru.size() ; i++) {
+            mistaZmenySmeru.get(i).vykresliSe(g);
         }
     }
 

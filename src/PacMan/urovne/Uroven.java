@@ -2,6 +2,7 @@ package PacMan.urovne;
 
 import PacMan.objekty.Prekazka;
 import PacMan.objekty.jidlo.Svaca;
+import PacMan.objekty.mistaZmenySmeru.MistaZmenySmeru;
 import PacMan.objekty.postavicky.Hrac;
 import PacMan.objekty.postavicky.Potvurkaa;
 import PacMan.objekty.postavicky.Smery;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class Uroven {
     protected ArrayList<Prekazka> prekazky = new ArrayList<>();
     protected ArrayList<Potvurkaa> potvurky = new ArrayList<>();
+    protected ArrayList<MistaZmenySmeru> mistaZmenySmeru = new ArrayList<>();
     protected ArrayList<Svaca> svaca;
 
 
@@ -45,10 +47,14 @@ public class Uroven {
     public void addHrac(int x, int y, int sirka, int vyska){
 
     }
+    public void addMistoZnemySmeru(int x, int y, int sirka, int vyska){
+        MistaZmenySmeru mistoZmenySmeru = new MistaZmenySmeru(x, y, sirka, vyska);
+        mistaZmenySmeru.add(mistoZmenySmeru);
+    }
     public void vytvoreniJidla() {
         svaca = new ArrayList<>();
-        for (int i = 0; i < 150; i++) {
-            int x = 25 * (i % 10) + 35;
+        for (int i = 0; i < 160; i++) {
+            int x = 30 * (i % 10) + 15;
             int y = 30 * (i / 10) + 25;
             boolean kolize = false;
             Svaca s = new Svaca(x, y);
@@ -62,6 +68,9 @@ public class Uroven {
                 svaca.add(s);
             }
         }
+    }
+    public ArrayList<MistaZmenySmeru> getMistaZmenySmeru(){
+        return mistaZmenySmeru;
     }
 
     public ArrayList<Prekazka> getPrekazky() {

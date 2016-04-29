@@ -29,6 +29,13 @@ public class Movinator3000 {
         this.uroven = uroven;
         generator = new Random();
     }
+    public void nahodnySmer(Potvurkaa potvurka){
+        int nahoda = generator.nextInt(29) + 1;
+        if(nahoda % 2 == 0) {
+            Smery[] smer = Smery.values();
+            potvurka.setSmer(smer[generator.nextInt(Smery.values().length - 1)]);
+        }
+    }
 
     public void pohniVsim() {
         if(kontrolaKolize(uroven.getHrac())){
@@ -47,6 +54,10 @@ public class Movinator3000 {
 
                 potvurka.setSmer(smer[generator.nextInt(Smery.values().length - 1)]);
             }
+            int[] budouci = potvurka.budouciPozice();
+            if(kontrolaKolizesMistem(budouci[0], budouci[1], potvurka)){
+                nahodnySmer(potvurka);
+            }
         }
     }
 
@@ -54,7 +65,17 @@ public class Movinator3000 {
         int[] budouci = postavicka.budouciPozice();
         boolean kontrolaKolizeVOkne = kontrolaKolizesOkrajemaHry(budouci[0], budouci[1], postavicka);
         boolean kontrolaKolizePrekazky = kontrolaKolizeSPrekazkama(budouci[0], budouci[1], postavicka);
-        return !kontrolaKolizeVOkne && !kontrolaKolizePrekazky;
+        //boolean kontrolaKOlizeSMistem = kontrolaKolizesMistem(budouci[0], budouci[1], postavicka);
+        return !kontrolaKolizeVOkne && !kontrolaKolizePrekazky; //kontrolaKOlizeSMistem;
+    }
+
+    private boolean kontrolaKolizesMistem(int x, int y, Postavicka postavicka){
+        for (int i = 0; i < uroven.getMistaZmenySmeru().size() ; i++) {
+            if(new Rectangle(x - 1, y - 1, postavicka.getVelikost() + 2, postavicka.getVelikost() + 2).intersects(uroven.getMistaZmenySmeru().get(i).getOkraje()));
+            return true;
+        }
+        return false;
+
     }
 
     private boolean kontrolaKolizesOkrajemaHry(int x, int y, Postavicka postavicka) {
