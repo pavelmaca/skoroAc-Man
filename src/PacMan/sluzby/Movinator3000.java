@@ -1,5 +1,6 @@
 package PacMan.sluzby;
 
+import PacMan.Engine;
 import PacMan.Spusteni;
 import PacMan.objekty.Prekazka;
 import PacMan.objekty.postavicky.Hrac;
@@ -19,7 +20,10 @@ import java.util.Random;
 public class Movinator3000 {
     int maxSirka;
     int maxVyska;
+    int scoreHrace;
+    int scorePotvurek;
     Random generator;
+    protected Engine engine;
 
     protected Uroven uroven;
 
@@ -29,17 +33,21 @@ public class Movinator3000 {
         this.uroven = uroven;
         generator = new Random();
     }
-    public void nahodnySmer(Potvurkaa potvurka){
-        int nahoda = generator.nextInt(29) + 1;
-        if(nahoda % 2 == 0) {
+    public void nahodnySmer(int i){
+        int nahoda = generator.nextInt(19000) + 1;
+        if(nahoda % 300 == 0) {
             Smery[] smer = Smery.values();
-            potvurka.setSmer(smer[generator.nextInt(Smery.values().length - 1)]);
+            uroven.getPotvurky().get(i).setSmer(smer[generator.nextInt(Smery.values().length - 1)]);
         }
     }
 
     public void pohniVsim() {
         if(kontrolaKolize(uroven.getHrac())){
             uroven.getHrac().pohyb();
+            int[] budouci = uroven.getHrac().budouciPozice();
+            if(kontrolaSnedeniJidla(budouci[0], budouci[1], uroven.getHrac())){
+            }
+
         }
 
 
@@ -54,9 +62,11 @@ public class Movinator3000 {
 
                 potvurka.setSmer(smer[generator.nextInt(Smery.values().length - 1)]);
             }
-            int[] budouci = potvurka.budouciPozice();
-            if(kontrolaKolizesMistem(budouci[0], budouci[1], potvurka)){
-                nahodnySmer(potvurka);
+            int[] budouci = uroven.getPotvurky().get(i).budouciPozice();
+            if(kontrolaKolizesMistem(budouci[0], budouci[1], uroven.getPotvurky().get(i))){
+                nahodnySmer(i);
+            }
+            if(kontrolaSnedeniJidla(budouci[0] - 1, budouci[1] - 1, uroven.getPotvurky().get(i))){
             }
         }
     }
@@ -66,6 +76,7 @@ public class Movinator3000 {
         boolean kontrolaKolizeVOkne = kontrolaKolizesOkrajemaHry(budouci[0], budouci[1], postavicka);
         boolean kontrolaKolizePrekazky = kontrolaKolizeSPrekazkama(budouci[0], budouci[1], postavicka);
         //boolean kontrolaKOlizeSMistem = kontrolaKolizesMistem(budouci[0], budouci[1], postavicka);
+        kontrolaSnedeniJidla(budouci[0], budouci[1], postavicka);
         return !kontrolaKolizeVOkne && !kontrolaKolizePrekazky; //kontrolaKOlizeSMistem;
     }
 
@@ -83,7 +94,7 @@ public class Movinator3000 {
             return true;
         } else if ((y >= maxVyska - postavicka.getVelikost())) {
             return true;
-        } else if (x < 0 || y < 0) {
+        } else if (x < 9 || y < 19) {
             return true;
         }
         return false;
@@ -98,15 +109,14 @@ public class Movinator3000 {
         }
         return false;
     }
-    /**
-     public void kontrolaSnedeniJidla(){
-     for (int i = 0; i < jidlo.size() ; i++) {
-     Rectangle okrajeJidla = jidlo.get(i).getOkraje();
-     if (hrac.getOkraje().intersects(okrajeJidla)) {
-     score++;
-     jidlo.remove(i);
+     public boolean kontrolaSnedeniJidla(int x, int y, Postavicka postavicka){
+     for (int i = 0; i < uroven.getSvaca().size() ; i++) {
+     Rectangle okrajeJidla = uroven.getSvaca().get(i).getOkraje();
+     if (new Rectangle(x - 1, y - 2, postavicka.getVelikost(), postavicka.getVelikost()).intersects(okrajeJidla)) {
+         uroven.getSvaca().remove(i);
+         return true;
      }
      }
+         return false;
      }
-     */
 }

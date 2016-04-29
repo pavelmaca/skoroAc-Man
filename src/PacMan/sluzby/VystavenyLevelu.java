@@ -15,6 +15,7 @@ public class VystavenyLevelu {
 
     public VystavenyLevelu() {
         vytvorUroven1();
+        vytvorUroven2();
     }
 
     public Uroven get(int uroven) {
@@ -30,11 +31,13 @@ public class VystavenyLevelu {
         lvl.addPrekazka(30, 280, 240, 60);
         lvl.addPrekazka(30, 370, 125, 60);
         lvl.addPrekazka(180, 370, 90, 60);
+        lvl.addPrekazka(25, 467, 255, 10);
 
 
-        lvl.addPotvurka(5, 5, Smery.dolu);
-        lvl.addPotvurka(285, 400, Smery.pravo);
-        lvl.addPotvurka(160, 370, Smery.levo);
+        lvl.addPotvurka(70, 480, Smery.dolu);
+        lvl.addPotvurka(285, 480, Smery.pravo);
+        lvl.addPotvurka(160, 480, Smery.levo);
+        lvl.addPotvurka(130, 480, Smery.levo);
 
         lvl.addMistoZnemySmeru(9, 260, 15, 15);
         lvl.addMistoZnemySmeru(9, 19, 15, 15);
@@ -47,6 +50,10 @@ public class VystavenyLevelu {
         lvl.addMistoZnemySmeru(9, 350, 15, 15);
         lvl.addMistoZnemySmeru(130, 260, 15, 15);
         lvl.addMistoZnemySmeru(160, 350, 15, 15);
+        lvl.addMistoZnemySmeru(160, 440, 15, 15);
+        lvl.addMistoZnemySmeru(9, 440, 15, 15);
+        lvl.addMistoZnemySmeru(280, 440, 15, 15);
+
 
         lvl.vytvoreniJidla();
         sezanam.add(lvl);
@@ -55,28 +62,40 @@ public class VystavenyLevelu {
     }
 
     protected void vytvorUroven2() {
-      /*  {53, 40, 20, 215},
-        {70, 75, 100, 20},
-        {100, 20, 174, 20},
-        {200, 75, 20, 60},
-        {254, 40, 20, 150},
-        {100, 135, 70, 20},
-        {100, 195, 125, 20},
-        {200, 163, 25, 35},
-        {27, 283, 20, 170},
-        {230, 230, 25, 49},
-        {107, 259, 125, 20},
-        {40, 433, 227, 20},
-        {250, 318, 20, 135},
-        {200, 280, 20, 65},
-        {130, 280, 20, 65},
-        {77, 310, 20, 83},
-        {97, 373, 130, 20}
-    };
-    vytvoreniJidla();
-    barvaVnitrkuPrekazek = Color.RED;*/
+        Uroven lvl = new Uroven(Color.RED);
+        lvl.addPrekazka(53, 40, 20, 215);
+        lvl.addPrekazka(70, 75, 100, 20);
+        lvl.addPrekazka(100, 20, 174, 20);
+        lvl.addPrekazka(200, 75, 20, 60);
+        lvl.addPrekazka(254, 40, 20, 150);
+        lvl.addPrekazka(100, 135, 70, 20);
+        lvl.addPrekazka(100, 195, 125, 20);
+        lvl.addPrekazka(200, 163, 25, 35);
+        lvl.addPrekazka(27, 283, 20, 170);
+        lvl.addPrekazka(230, 230, 25, 49);
+        lvl.addPrekazka(107, 259, 125, 20);
+        lvl.addPrekazka(40, 433, 227, 20);
+        lvl.addPrekazka(250, 318, 20, 135);
+        lvl.addPrekazka(200, 280, 20, 65);
+        lvl.addPrekazka(130, 280, 20, 65);
+        lvl.addPrekazka(77, 310, 20, 83);
+        lvl.addPrekazka(97, 373, 130, 20);
+
+
+        lvl.vytvoreniJidla();
+
+
+        lvl.addPotvurka(150, 290, Smery.dolu);
+        lvl.addPotvurka(170, 290, Smery.pravo);
+        lvl.addPotvurka(150, 310, Smery.levo);
+        lvl.addPotvurka(170, 310, Smery.levo);
+
+
+        sezanam.add(lvl);
+        sezanam.set(1, lvl);
     }
-    public Rectangle getOkraje(int i){
+
+    public Rectangle getOkraje(int i) {
         return new Rectangle();
     }
 

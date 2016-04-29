@@ -18,7 +18,8 @@ import java.util.ArrayList;
  */
 public class Engine {
     private int zivoty = 3;
-    protected int score = 0;
+    protected int scoreHrace = 0;
+    protected int scorePotvurek = 0;
     protected Uroven aktualni;
     protected Movinator3000 movinator3000;
     private int velikostSirka;
@@ -40,8 +41,8 @@ public class Engine {
         movinator3000 = new Movinator3000(velikostSirka, velikostVyska, aktualni);
     }
 
-    public int getScore() {
-        return score;
+    public int getScoreHrace() {
+        return scoreHrace;
     }
 
     public ArrayList<Svaca> getSvaca() {
@@ -69,6 +70,13 @@ public class Engine {
     }
 
     public ArrayList<MistaZmenySmeru> getMistaZmenySmeru(){return aktualni.getMistaZmenySmeru();}
+    public int getUroven(){return uroven;}
+    public void setScoreHrace(int score){
+        this.scoreHrace = score;
+    }
+    public void setScorePotvurek(int score){
+        this.scorePotvurek = score;
+    }
 
     public void zmenSmer(Smery smer){
        aktualni.getHrac().setSmer(smer);

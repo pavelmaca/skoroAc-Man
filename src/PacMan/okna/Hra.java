@@ -36,13 +36,12 @@ public class Hra extends JPanel {
         this.setPreferredSize(new Dimension(sirka, vyska));
         setBackground(Color.RED);
         this.engine = new Engine(sirka, vyska);
-        /* TODO změna barvy pozadí při vyším levelu
-        if (engine.getUroven() == 1) {
+        if (engine.getUroven() == 0) {
             this.setBackground(Color.RED);
         }
-        if (engine.getUroven() == 2) {
+        if (engine.getUroven() == 1) {
             this.setBackground(Color.DARK_GRAY);
-            */
+        }
 
         addKeyListener(new KeyAdapter() {
             @Override
@@ -106,15 +105,18 @@ public class Hra extends JPanel {
         for (int i = 0; i < prekazkay.size(); i++) {
             prekazkay.get(i).vykresliSe(g);
         }
+        /**
         ArrayList<MistaZmenySmeru> mistaZmenySmeru = engine.getMistaZmenySmeru();
         for (int i = 0; i < mistaZmenySmeru.size() ; i++) {
             mistaZmenySmeru.get(i).vykresliSe(g);
         }
+         */
+
     }
 
     private void vypisScore(Graphics g) {
         g.setColor(Color.YELLOW);
-        g.drawString(String.valueOf(engine.getScore()), 270, 15);
+        g.drawString(String.valueOf(engine.getScoreHrace()), 270, 15);
     }
 
     private void vypisVyhru(Graphics g) {
