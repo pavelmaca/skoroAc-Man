@@ -15,7 +15,7 @@ public class VystavenyLevelu {
 
     public VystavenyLevelu() {
         vytvorUroven1();
-        vytvorUroven2();
+        //vytvorUroven2();
     }
 
     public Uroven get(int uroven) {

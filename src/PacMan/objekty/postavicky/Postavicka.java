@@ -30,6 +30,8 @@ abstract public class Postavicka {
         x = pozice[0];
         y = pozice[1];
     }
+    public int setX(int x){return this.x = x;}
+    public int setY(int y){return this.y = y;}
 
     public int[] budouciPozice() {
         int[] pozice = new int[] {x, y};

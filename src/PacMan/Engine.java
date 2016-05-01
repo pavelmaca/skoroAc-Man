@@ -42,7 +42,11 @@ public class Engine {
     }
 
     public int getScoreHrace() {
-        return scoreHrace;
+        return movinator3000.getScoreHrace();
+    }
+
+    public int getScorePotvurek() {
+        return movinator3000.getScorePotvurek();
     }
 
     public ArrayList<Svaca> getSvaca() {
@@ -62,26 +66,39 @@ public class Engine {
     }
 
     public int getZivoty() {
-        return zivoty;
+        return movinator3000.zivoty;
     }
 
     public boolean hracVyhral() {
-        return aktualni.getSvaca().size() == 0;
+        return getScoreHrace() > getScorePotvurek();
     }
 
-    public ArrayList<MistaZmenySmeru> getMistaZmenySmeru(){return aktualni.getMistaZmenySmeru();}
-    public int getUroven(){return uroven;}
-    public void setScoreHrace(int score){
+    public ArrayList<MistaZmenySmeru> getMistaZmenySmeru() {
+        return aktualni.getMistaZmenySmeru();
+    }
+
+    public int getUroven() {
+        return uroven;
+    }
+    public int setUroven(int uroven){
+        return this.uroven = uroven;
+    }
+
+    public void setScoreHrace(int score) {
         this.scoreHrace = score;
     }
-    public void setScorePotvurek(int score){
+
+    public void setScorePotvurek(int score) {
         this.scorePotvurek = score;
     }
+    public int getZivotyHrace(){return zivoty;}
+    public int setZivotyHrace(int zivoty){return this.zivoty = zivoty;}
 
-    public void zmenSmer(Smery smer){
-       aktualni.getHrac().setSmer(smer);
+    public void zmenSmer(Smery smer) {
+        aktualni.getHrac().setSmer(smer);
     }
-    public void skok(){
+
+    public void skok() {
         movinator3000.pohniVsim();
 
     }

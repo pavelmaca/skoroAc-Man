@@ -77,14 +77,20 @@ public class Hra extends JPanel {
         super.paintComponent(g);
         pocetZivotu(g);
         vypisScore(g);
-        g.drawString("Štěpán ", 5, 15);
-        if (engine.hracVyhral()) {
-            vypisVyhru(g);
-            return;
+        //g.drawString("Štěpán ", 5, 15);
+        if (engine.getSvaca().size() == 0) {
+            if(engine.hracVyhral()) {
+                vypisVyhru(g);
+                casovac.stop();
+            }else{
+                vypsaniProhry(g);
+                casovac.stop();
+            }
         }
         vykresliPromene(g);
         if (engine.getZivoty() <= 0) {
             vypsaniProhry(g);
+            casovac.stop();
             return;
         }
     }
@@ -116,7 +122,8 @@ public class Hra extends JPanel {
 
     private void vypisScore(Graphics g) {
         g.setColor(Color.YELLOW);
-        g.drawString(String.valueOf(engine.getScoreHrace()), 270, 15);
+        g.drawString("Score Hrace: "+String.valueOf(engine.getScoreHrace()), 200, 15);
+        g.drawString("Score Potvurek: "+String.valueOf(engine.getScorePotvurek()), 15, 15);
     }
 
     private void vypisVyhru(Graphics g) {
@@ -133,7 +140,7 @@ public class Hra extends JPanel {
     private void pocetZivotu(Graphics g) {
         g.setColor(Color.YELLOW);
         g.setFont(Font.getFont(Font.MONOSPACED));
-        g.drawString("Z I V O T Y :     " + engine.getZivoty(), (getSIRKA_PANELU() / 2) - 45, 15);
+        g.drawString("ZIVOTY :   " + engine.getZivoty(), 125, 15);
     }
 
     private class PoslouchaniCasovace implements ActionListener {

@@ -20,10 +20,11 @@ import java.util.Random;
 public class Movinator3000 {
     int maxSirka;
     int maxVyska;
-    int scoreHrace;
-    int scorePotvurek;
+    private int scoreHrace = 0;
+    private int scorePotvurek = 0;
     Random generator;
     protected Engine engine;
+    public int zivoty = 3;
 
     protected Uroven uroven;
 
@@ -34,8 +35,8 @@ public class Movinator3000 {
         generator = new Random();
     }
     public void nahodnySmer(int i){
-        int nahoda = generator.nextInt(19000) + 1;
-        if(nahoda % 300 == 0) {
+        int nahoda = generator.nextInt(1900) + 1;
+        if(nahoda % 200 == 0) {
             Smery[] smer = Smery.values();
             uroven.getPotvurky().get(i).setSmer(smer[generator.nextInt(Smery.values().length - 1)]);
         }
@@ -46,6 +47,14 @@ public class Movinator3000 {
             uroven.getHrac().pohyb();
             int[] budouci = uroven.getHrac().budouciPozice();
             if(kontrolaSnedeniJidla(budouci[0], budouci[1], uroven.getHrac())){
+                scoreHrace++;
+                //engine.setScoreHrace(scoreHrace);
+            }
+            if(kontrolaKolizeSPotvurkama(budouci[0], budouci[1], uroven.getHrac())){
+                zivoty--;
+                uroven.getHrac().setX(130);
+                uroven.getHrac().setY(230);
+                scorePotvurek = scorePotvurek + 10;
             }
 
         }
@@ -67,6 +76,7 @@ public class Movinator3000 {
                 nahodnySmer(i);
             }
             if(kontrolaSnedeniJidla(budouci[0] - 1, budouci[1] - 1, uroven.getPotvurky().get(i))){
+                scorePotvurek++;
             }
         }
     }
@@ -87,6 +97,16 @@ public class Movinator3000 {
         }
         return false;
 
+    }
+
+    private boolean kontrolaKolizeSPotvurkama(int x, int y, Postavicka postavicka){
+        for (int i = 0; i < uroven.getPotvurky().size(); i++) {
+            if (new Rectangle(x - 1, y - 1, postavicka.getVelikost() + 2, postavicka.getVelikost() + 2).intersects(uroven.getPotvurky().get(i).getOkraje())) {
+                return true;
+
+            }
+        }
+        return false;
     }
 
     private boolean kontrolaKolizesOkrajemaHry(int x, int y, Postavicka postavicka) {
@@ -119,4 +139,7 @@ public class Movinator3000 {
      }
          return false;
      }
+    public int getScoreHrace(){return scoreHrace;}
+
+    public int getScorePotvurek(){return scorePotvurek;}
 }

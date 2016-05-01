@@ -23,6 +23,8 @@ public class Potvurkaa  extends Postavicka{
         g.fillRect(x, y, velikost, velikost);
     }
 
+    public Rectangle getOkraje(){return new Rectangle(x, y, velikost, velikost);}
+
 
 
 /*
