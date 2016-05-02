@@ -11,7 +11,7 @@ public class Hrac extends Postavicka {
     private Color barva = Color.WHITE;
 
     public Hrac() {
-        super(130, 230, Smery.stop);
+        super(125, 230, Smery.stop);
     }
 
     public void vykresliSe(Graphics g) {

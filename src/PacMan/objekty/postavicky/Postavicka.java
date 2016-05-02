@@ -14,7 +14,7 @@ import java.awt.*;
 abstract public class Postavicka {
     protected int x;
     protected int y;
-    protected int velikost = 15;
+    protected int velikost = 20;
 
     protected Smery smer;
     protected int rychlost = 1;

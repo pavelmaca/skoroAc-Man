@@ -1,6 +1,7 @@
 package PacMan.urovne;
 
 import PacMan.objekty.Prekazka;
+import PacMan.objekty.jidlo.SuperJidlo;
 import PacMan.objekty.jidlo.Svaca;
 import PacMan.objekty.mistaZmenySmeru.MistaZmenySmeru;
 import PacMan.objekty.postavicky.Hrac;
@@ -17,6 +18,7 @@ public class Uroven {
     protected ArrayList<Prekazka> prekazky = new ArrayList<>();
     protected ArrayList<Potvurkaa> potvurky = new ArrayList<>();
     protected ArrayList<MistaZmenySmeru> mistaZmenySmeru = new ArrayList<>();
+    protected ArrayList<SuperJidlo> superJidloo = new ArrayList<>();
     protected ArrayList<Svaca> svaca;
 
 
@@ -46,6 +48,10 @@ public class Uroven {
     }
     public void addHrac(int x, int y, int sirka, int vyska){
 
+    }
+    public void addSuperJidlo(int x, int y){
+        SuperJidlo superJidlo = new SuperJidlo(x, y);
+        superJidloo.add(superJidlo);
     }
     public void addMistoZnemySmeru(int x, int y, int sirka, int vyska){
         MistaZmenySmeru mistoZmenySmeru = new MistaZmenySmeru(x, y, sirka, vyska);
@@ -84,6 +90,7 @@ public class Uroven {
     public ArrayList<Svaca> getSvaca() {
         return svaca;
     }
+    public ArrayList<SuperJidlo> getSuperJidlo(){return superJidloo;}
 
     public Hrac getHrac() {return hrac;}
 }

@@ -2,6 +2,7 @@ package PacMan.okna;
 
 
 import PacMan.objekty.Prekazka;
+import PacMan.objekty.jidlo.SuperJidlo;
 import PacMan.objekty.jidlo.Svaca;
 import PacMan.objekty.mistaZmenySmeru.MistaZmenySmeru;
 import PacMan.objekty.postavicky.*;
@@ -18,6 +19,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.ImageIcon;
 
 /**
  * Author: Štěpán Mudra.
@@ -25,6 +27,7 @@ import javax.swing.Timer;
 public class Hra extends JPanel {
     private Engine engine;
     private Timer casovac;
+    private Image gameoverP = new ImageIcon("C:\\Users\\Admin\\IdeaProjects\\Hra\\src\\gameover.gif").getImage();
 
 
     public Hra() {
@@ -42,6 +45,7 @@ public class Hra extends JPanel {
         if (engine.getUroven() == 1) {
             this.setBackground(Color.DARK_GRAY);
         }
+
 
         addKeyListener(new KeyAdapter() {
             @Override
@@ -69,7 +73,6 @@ public class Hra extends JPanel {
                 }
             }
         });
-
         setFocusable(true);
     }
 
@@ -81,18 +84,19 @@ public class Hra extends JPanel {
         if (engine.getSvaca().size() == 0) {
             if(engine.hracVyhral()) {
                 vypisVyhru(g);
-                casovac.stop();
+                //casovac.stop();
+                return;
             }else{
                 vypsaniProhry(g);
                 casovac.stop();
             }
         }
-        vykresliPromene(g);
         if (engine.getZivoty() <= 0) {
             vypsaniProhry(g);
             casovac.stop();
             return;
         }
+        vykresliPromene(g);
     }
 
     private void vykresliPromene(Graphics g) {
@@ -110,6 +114,10 @@ public class Hra extends JPanel {
         ArrayList<Prekazka> prekazkay = engine.getPrekazky();
         for (int i = 0; i < prekazkay.size(); i++) {
             prekazkay.get(i).vykresliSe(g);
+        }
+        ArrayList<SuperJidlo> superJidlo = engine.getSuperJidlo();
+        for (int i = 0; i < superJidlo.size(); i++) {
+            superJidlo.get(i).vykresleniSuperJidla(g);
         }
         /**
         ArrayList<MistaZmenySmeru> mistaZmenySmeru = engine.getMistaZmenySmeru();
@@ -129,7 +137,9 @@ public class Hra extends JPanel {
     private void vypisVyhru(Graphics g) {
         this.setBackground(Color.BLUE);
         g.setColor(Color.ORANGE);
-        g.drawString("V Y H R Á L / A  J S I .", 90, 270);
+        //Graphics2D g2d = (Graphics2D) g;
+        g.drawImage(gameoverP,0,0,this);
+        //g.drawString("V Y H R Á L / A  J S I .", 90, 270);
     }
 
     private void vypsaniProhry(Graphics g) {

@@ -20,25 +20,29 @@ import java.util.Random;
 public class Movinator3000 {
     int maxSirka;
     int maxVyska;
-    private int scoreHrace = 0;
-    private int scorePotvurek = 0;
+    private int scoreHrace;
+    private int scorePotvurek;
+    private int zivoty;
     Random generator;
     protected Engine engine;
-    public int zivoty = 3;
 
     protected Uroven uroven;
 
-    public Movinator3000(int maxSirka, int maxVyska, Uroven uroven) {
+    public Movinator3000(int maxSirka, int maxVyska, Uroven uroven, int zivoty, int scoreHrace, int scorePotvurek) {
         this.maxSirka = maxSirka;
         this.maxVyska = maxVyska;
         this.uroven = uroven;
         generator = new Random();
+        this.zivoty = zivoty;
+        this.scoreHrace = scoreHrace;
+        this.scorePotvurek = scorePotvurek;
     }
-    public void nahodnySmer(int i){
+    public void nahodnySmer(Potvurkaa potvurkaa){
         int nahoda = generator.nextInt(1900) + 1;
-        if(nahoda % 200 == 0) {
+        //int hahoda2 =
+        if(nahoda % (generator.nextInt(300) + 1) == 0) {
             Smery[] smer = Smery.values();
-            uroven.getPotvurky().get(i).setSmer(smer[generator.nextInt(Smery.values().length - 1)]);
+            potvurkaa.setSmer(smer[generator.nextInt(Smery.values().length - 1)]);
         }
     }
 
@@ -52,9 +56,12 @@ public class Movinator3000 {
             }
             if(kontrolaKolizeSPotvurkama(budouci[0], budouci[1], uroven.getHrac())){
                 zivoty--;
-                uroven.getHrac().setX(130);
+                uroven.getHrac().setX(125);
                 uroven.getHrac().setY(230);
-                scorePotvurek = scorePotvurek + 10;
+                scorePotvurek = scorePotvurek + 30;
+            }
+            if(kontrolaKolizeSuperJidla(budouci[0], budouci[1], uroven.getHrac())){
+                scoreHrace = scoreHrace + 30;
             }
 
         }
@@ -73,10 +80,13 @@ public class Movinator3000 {
             }
             int[] budouci = uroven.getPotvurky().get(i).budouciPozice();
             if(kontrolaKolizesMistem(budouci[0], budouci[1], uroven.getPotvurky().get(i))){
-                nahodnySmer(i);
+                nahodnySmer(potvurka);
             }
             if(kontrolaSnedeniJidla(budouci[0] - 1, budouci[1] - 1, uroven.getPotvurky().get(i))){
                 scorePotvurek++;
+            }
+            if(kontrolaKolizeSuperJidla(budouci[0], budouci[1], uroven.getPotvurky().get(i))){
+                scorePotvurek = scorePotvurek + 30;
             }
         }
     }
@@ -119,6 +129,15 @@ public class Movinator3000 {
         }
         return false;
     }
+    private boolean kontrolaKolizeSuperJidla(int x, int y, Postavicka postavicka){
+        for (int i = 0; i < uroven.getSuperJidlo().size() ; i++) {
+            if(new Rectangle(x, y, postavicka.getVelikost() + 2, postavicka.getVelikost() + 2).intersects(uroven.getSuperJidlo().get(i).getOkraje())){
+                uroven.getSuperJidlo().remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     public boolean kontrolaKolizeSPrekazkama(int x, int y, Postavicka postavicka) {
@@ -142,4 +161,6 @@ public class Movinator3000 {
     public int getScoreHrace(){return scoreHrace;}
 
     public int getScorePotvurek(){return scorePotvurek;}
+
+    public int getZivoty(){return zivoty;}
 }

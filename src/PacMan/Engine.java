@@ -1,6 +1,7 @@
 package PacMan;
 
 import PacMan.objekty.Prekazka;
+import PacMan.objekty.jidlo.SuperJidlo;
 import PacMan.objekty.jidlo.Svaca;
 import PacMan.objekty.mistaZmenySmeru.MistaZmenySmeru;
 import PacMan.objekty.postavicky.Hrac;
@@ -38,7 +39,7 @@ public class Engine {
     protected void nactiUroven(int cisloUrovene) {
 
         aktualni = tvorbaUrovne.get(cisloUrovene);
-        movinator3000 = new Movinator3000(velikostSirka, velikostVyska, aktualni);
+        movinator3000 = new Movinator3000(velikostSirka, velikostVyska, aktualni, zivoty, scorePotvurek, scoreHrace);
     }
 
     public int getScoreHrace() {
@@ -56,6 +57,7 @@ public class Engine {
     public ArrayList<Potvurkaa> getPotvurky() {
         return aktualni.getPotvurky();
     }
+    public ArrayList<SuperJidlo> getSuperJidlo(){return aktualni.getSuperJidlo();}
 
     public Hrac getHrac() {
         return aktualni.getHrac();
@@ -66,7 +68,7 @@ public class Engine {
     }
 
     public int getZivoty() {
-        return movinator3000.zivoty;
+        return movinator3000.getZivoty();
     }
 
     public boolean hracVyhral() {
@@ -85,11 +87,11 @@ public class Engine {
     }
 
     public void setScoreHrace(int score) {
-        this.scoreHrace = score;
+        scoreHrace = score;
     }
 
     public void setScorePotvurek(int score) {
-        this.scorePotvurek = score;
+        scorePotvurek = score;
     }
     public int getZivotyHrace(){return zivoty;}
     public int setZivotyHrace(int zivoty){return this.zivoty = zivoty;}

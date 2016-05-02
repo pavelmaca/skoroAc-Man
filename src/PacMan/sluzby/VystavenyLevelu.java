@@ -31,11 +31,11 @@ public class VystavenyLevelu {
         lvl.addPrekazka(30, 280, 240, 60);
         lvl.addPrekazka(30, 370, 125, 60);
         lvl.addPrekazka(180, 370, 90, 60);
-        lvl.addPrekazka(25, 467, 255, 10);
+        lvl.addPrekazka(30, 467, 240, 10);
 
 
         lvl.addPotvurka(70, 480, Smery.dolu);
-        lvl.addPotvurka(285, 480, Smery.pravo);
+        lvl.addPotvurka(270, 480, Smery.pravo);
         lvl.addPotvurka(160, 480, Smery.levo);
         lvl.addPotvurka(130, 480, Smery.levo);
 
@@ -56,6 +56,13 @@ public class VystavenyLevelu {
 
 
         lvl.vytvoreniJidla();
+
+        lvl.addSuperJidlo(195, 142);
+        lvl.addSuperJidlo(250, 350);
+        lvl.addSuperJidlo(163, 443);
+
+
+
         sezanam.add(lvl);
         sezanam.set(0, lvl);
 
