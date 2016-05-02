@@ -27,7 +27,7 @@ import javax.swing.ImageIcon;
 public class Hra extends JPanel {
     private Engine engine;
     private Timer casovac;
-    private Image gameoverP = new ImageIcon("C:\\Users\\Admin\\IdeaProjects\\Hra\\src\\gameover.gif").getImage();
+    private Image gameoverP = new ImageIcon("C:\\Users\\Admin\\IdeaProjects\\Hra\\src\\Pac - Man.jpg").getImage();
 
 
     public Hra() {
@@ -125,7 +125,6 @@ public class Hra extends JPanel {
             mistaZmenySmeru.get(i).vykresliSe(g);
         }
          */
-
     }
 
     private void vypisScore(Graphics g) {
@@ -135,10 +134,10 @@ public class Hra extends JPanel {
     }
 
     private void vypisVyhru(Graphics g) {
-        this.setBackground(Color.BLUE);
+        //this.setBackground(Color.BLUE);
         g.setColor(Color.ORANGE);
         //Graphics2D g2d = (Graphics2D) g;
-        g.drawImage(gameoverP,0,0,this);
+        g.drawImage(gameoverP,0,19,this);
         //g.drawString("V Y H R Á L / A  J S I .", 90, 270);
     }
 

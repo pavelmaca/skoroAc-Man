@@ -40,7 +40,7 @@ public class Movinator3000 {
     public void nahodnySmer(Potvurkaa potvurkaa){
         int nahoda = generator.nextInt(1900) + 1;
         //int hahoda2 =
-        if(nahoda % (generator.nextInt(300) + 1) == 0) {
+        if(nahoda % (generator.nextInt(500) + 1) == 0) {
             Smery[] smer = Smery.values();
             potvurkaa.setSmer(smer[generator.nextInt(Smery.values().length - 1)]);
         }

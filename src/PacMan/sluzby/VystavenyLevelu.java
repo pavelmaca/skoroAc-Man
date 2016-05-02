@@ -60,6 +60,7 @@ public class VystavenyLevelu {
         lvl.addSuperJidlo(195, 142);
         lvl.addSuperJidlo(250, 350);
         lvl.addSuperJidlo(163, 443);
+        lvl.addSuperJidlo(15,443);
 
 
 
