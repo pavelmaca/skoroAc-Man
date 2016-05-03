@@ -84,7 +84,7 @@ public class Hra extends JPanel {
         if (engine.getSvaca().size() == 0) {
             if(engine.hracVyhral()) {
                 vypisVyhru(g);
-                //casovac.stop();
+                casovac.stop();
                 return;
             }else{
                 vypsaniProhry(g);

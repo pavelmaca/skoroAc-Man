@@ -20,7 +20,7 @@ public class Potvurkaa  extends Postavicka{
 
     public void vykresliSe(Graphics g){
         g.setColor(barva);
-        g.fillRect(x, y, velikost, velikost);
+        g.fillOval(x, y, velikost, velikost);
     }
 
     public Rectangle getOkraje(){return new Rectangle(x, y, velikost, velikost);}

@@ -6,6 +6,7 @@ import PacMan.Spusteni;
 import PacMan.okna.Hra;
 import PacMan.sluzby.Movinator3000;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
